@@ -3,10 +3,13 @@ import {
    Col,
    Select,
    Table,
-   Button
-} from 'antd';
+   Button,
+   ConfigProvider
+} from '@/components';
 import { faChartArea,faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './style.css';
+
 
 export default function RiskMatrix() {
    
@@ -202,138 +205,138 @@ export default function RiskMatrix() {
       },
   
   ];
-   return(
-      <div className="main-matrix">
-      <section className="risk-matrix">
-          <div className="header"> 
-              <h3 className="title">Risk Matrix</h3>
-          </div>
+   return(<ConfigProvider prefixCls="ar" iconPrefixCls="aricon">
+        <div className="main-matrix">
+            <section className="risk-matrix">
+                <div className="header"> 
+                    <h3 className="title">Risk Matrix</h3>
+                </div>
 
-          <div className='box-content'>
-              <Row gutter={[16,16]}>
-                  <Col span={12} sm={12} xs={24}>
-                      <div className='box'>
-                          <div className='icon chart1'>
-                              <FontAwesomeIcon className='icon-chart-area' icon={faChartArea} />
-                          </div>
-                          <div className='text'>
-                              <span>Number Of Risk With Rating</span>
-                              <h3>150</h3>
-                          </div>
-                      </div>
-                  </Col>
-                  <Col className="gutter-row" span={12} sm={12} xs={24}>
-                      <div className='box'>
-                          <div className='icon chart2'>
-                              <FontAwesomeIcon className='icon-chart-area' icon={faChartArea} />
-                          </div>
-                          <div className='text'>
-                              <span>Number Of Risk With Rating</span>
-                              <h3>150</h3>
-                          </div>
-                      </div>
-                  </Col>
-              </Row>
-          </div>
-      </section>
+                <div className='box-content'>
+                    <Row gutter={[16,16]}>
+                        <Col span={12} sm={12} xs={24}>
+                            <div className='box'>
+                                <div className='icon chart1'>
+                                    <FontAwesomeIcon className='icon-chart-area' icon={faChartArea} />
+                                </div>
+                                <div className='text'>
+                                    <span>Number Of Risk With Rating</span>
+                                    <h3>150</h3>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col className="gutter-row" span={12} sm={12} xs={24}>
+                            <div className='box'>
+                                <div className='icon chart2'>
+                                    <FontAwesomeIcon className='icon-chart-area' icon={faChartArea} />
+                                </div>
+                                <div className='text'>
+                                    <span>Number Of Risk With Rating</span>
+                                    <h3>150</h3>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
+            </section>
 
-      <section className='residual-risk-matrix'>
-          <div className='header'>
-              <h3 className='title'>Residual Risk Matrix</h3>
-              <Select
-                  defaultValue="Inherent Risk Matrix"
-                  onChange={handleChange}
-                  options={[
-                      {
-                          value: 'Inherent Risk Matrix',
-                          label: 'Inherent Risk Matrix',
-                      },
-                      {
-                          value: 'Inherent Risk Matrix',
-                          label: 'Inherent Risk Matrix',
-                      },
-                      {
-                          value: 'Inherent Risk Matrix',
-                          label: 'Inherent Risk Matrix',
-                      },
-                  ]}
-              />
-          </div>
+            <section className='residual-risk-matrix'>
+                <div className='header'>
+                    <h3 className='title'>Residual Risk Matrix</h3>
+                    <Select
+                        defaultValue="Inherent Risk Matrix"
+                        onChange={handleChange}
+                        options={[
+                            {
+                                value: 'Inherent Risk Matrix',
+                                label: 'Inherent Risk Matrix',
+                            },
+                            {
+                                value: 'Inherent Risk Matrix',
+                                label: 'Inherent Risk Matrix',
+                            },
+                            {
+                                value: 'Inherent Risk Matrix',
+                                label: 'Inherent Risk Matrix',
+                            },
+                        ]}
+                    />
+                </div>
 
-          <div className='teable-content'>
-              <Table dataSource={dataSource} columns={columns} pagination={false}/>
-          </div>
-      </section>
+                <div className='teable-content'>
+                    <Table dataSource={dataSource} columns={columns} pagination={false}/>
+                </div>
+            </section>
 
-      <section className="risk-treatment-detail">
-          <div className="main-table-detail">
-              <div className="header">
-                  <h2 className="title">Impact Risk Treatment Details</h2>
-                  <div className="btn-right">
-                      <Select
-                          showSearch
-                          style={{
-                          }}
-                          placeholder="Select category"
-                          options={[
-                          {
-                              value: '1',
-                              label: 'Not Identified',
-                          },
-                          {
-                              value: '2',
-                              label: 'Closed',
-                          },
-                          ]}
-                      />
-                      <Select
-                          showSearch
-                          style={{
-                          }}
-                          placeholder="Select divisions"
-                          options={[
-                          {
-                              value: '1',
-                              label: 'Not Identified',
-                          },
-                          {
-                              value: '2',
-                              label: 'Closed',
-                          },
-                          ]}
-                      />
-                      <Select
-                          showSearch
-                          style={{
-                          }}
-                          placeholder="Select status"
-                          options={[
-                          {
-                              value: '1',
-                              label: 'Not Identified',
-                          },
-                          {
-                              value: '2',
-                              label: 'Closed',
-                          },
-                          ]}
-                      />
-                      <Button className='btn-filter'>
-                          <FontAwesomeIcon className='icon-bars-filter' icon={faBars} />
-                          More Filters
-                      </Button>
-                  </div>
-              </div>
-              <div className="table-detail">
-                  <Table
-                  dataSource={dataDetail}
-                  columns={columnsDetail}
-                  rowKey="key"
-                  className="striped-table" 
-                  />
-              </div>
-          </div>
-      </section>
-  </div>   
-   );
+            <section className="risk-treatment-detail">
+                <div className="main-table-detail">
+                    <div className="header">
+                        <h2 className="title">Impact Risk Treatment Details</h2>
+                        <div className="btn-right">
+                            <Select
+                                showSearch
+                                style={{
+                                }}
+                                placeholder="Select category"
+                                options={[
+                                {
+                                    value: '1',
+                                    label: 'Not Identified',
+                                },
+                                {
+                                    value: '2',
+                                    label: 'Closed',
+                                },
+                                ]}
+                            />
+                            <Select
+                                showSearch
+                                style={{
+                                }}
+                                placeholder="Select divisions"
+                                options={[
+                                {
+                                    value: '1',
+                                    label: 'Not Identified',
+                                },
+                                {
+                                    value: '2',
+                                    label: 'Closed',
+                                },
+                                ]}
+                            />
+                            <Select
+                                showSearch
+                                style={{
+                                }}
+                                placeholder="Select status"
+                                options={[
+                                {
+                                    value: '1',
+                                    label: 'Not Identified',
+                                },
+                                {
+                                    value: '2',
+                                    label: 'Closed',
+                                },
+                                ]}
+                            />
+                            <Button className='btn-filter'>
+                                <FontAwesomeIcon className='icon-bars-filter' icon={faBars} />
+                                More Filters
+                            </Button>
+                        </div>
+                    </div>
+                    <div className="table-detail">
+                        <Table
+                        dataSource={dataDetail}
+                        columns={columnsDetail}
+                        rowKey="key"
+                        className="striped-table" 
+                        />
+                    </div>
+                </div>
+            </section>
+        </div>   
+    </ConfigProvider>);
 }
