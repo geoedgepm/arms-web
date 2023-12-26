@@ -78,7 +78,11 @@
    line-height: 175%; /* 31.5px */
 }
 
-.main-home .risk-treatment-status .header .btn-right-select .btn-right-filter {
+.main-home .risk-treatment-status .header .btn-right-select .btn-right-filter:not(:last-child) {
+   margin-right: 10px;
+}
+
+.main-home .risk-treatment-status .header .btn-right-select .btn-right-filter .icon-bars-filter {
    margin-right: 10px;
 }
 

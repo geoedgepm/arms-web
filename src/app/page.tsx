@@ -1,5 +1,5 @@
 'use client'
-
+import React, { useState } from 'react';
 import { 
     ConfigProvider, 
     Card,
@@ -8,14 +8,14 @@ import {
     Row, 
     Select, 
     Table,
-    Statistic
+    Statistic,
+    Drawer 
 } from '@/components';
 import {
     ArrowDownOutlined,
     ArrowUpOutlined
 } from '@/components/icons'
 import { 
-    faChartArea, 
     faArrowDown, 
     faBars
 } from '@fortawesome/free-solid-svg-icons';
@@ -140,48 +140,58 @@ export default function Page() {
     ];
     
     const dataDetail = [
-    {
-        key: '1',
-        category: 'RSK_GA_3_10',
-        informatin: "-",
-        remarks: '-',
-        focal_point: '-',
-        cost_usd: '0.00',
-        due_date: '12/01/2023',
-        status: '-',
-    },
-    {
-        key: '2',
-        category: 'RSK_GA_3_10',
-        informatin: "-",
-        remarks: '-',
-        focal_point: '-',
-        cost_usd: '0.00',
-        due_date: '12/01/2023',
-        status: '-',
+        {
+            key: '1',
+            category: 'RSK_GA_3_10',
+            informatin: "-",
+            remarks: '-',
+            focal_point: '-',
+            cost_usd: '0.00',
+            due_date: '12/01/2023',
+            status: '-',
         },
         {
-        key: '3',
-        category: 'RSK_GA_3_10',
-        informatin: "-",
-        remarks: '-',
-        focal_point: '-',
-        cost_usd: '0.00',
-        due_date: '12/01/2023',
-        status: '-',
+            key: '2',
+            category: 'RSK_GA_3_10',
+            informatin: "-",
+            remarks: '-',
+            focal_point: '-',
+            cost_usd: '0.00',
+            due_date: '12/01/2023',
+            status: '-',
+        },
+        {
+            key: '3',
+            category: 'RSK_GA_3_10',
+            informatin: "-",
+            remarks: '-',
+            focal_point: '-',
+            cost_usd: '0.00',
+            due_date: '12/01/2023',
+            status: '-',
         },
         {
         key: '4',
-        category: 'RSK_GA_3_10',
-        informatin: "-",
-        remarks: '-',
-        focal_point: '-',
-        cost_usd: '0.00',
-        due_date: '12/01/2023',
-        status: '-',
+            category: 'RSK_GA_3_10',
+            informatin: "-",
+            remarks: '-',
+            focal_point: '-',
+            cost_usd: '0.00',
+            due_date: '12/01/2023',
+            status: '-',
         },
     
     ];
+
+    const [open, setOpen] = useState(false);
+
+    const showDrawer = () => {
+        setOpen(true);
+    };
+
+    const onClose = () => {
+        setOpen(false);
+    };
 
   return (<ConfigProvider prefixCls="ar" iconPrefixCls="aricon">
     
@@ -255,9 +265,15 @@ export default function Page() {
                         ]}
                     />
 
-                    <Button className="btn-right-filter btn-bar-filter">
-                        <FontAwesomeIcon className='icon-bars-filter' icon={faBars} />More Filters
+                    <Button className="btn-right-filter btn-bar-filter" onClick={showDrawer}>
+                        <FontAwesomeIcon className='icon-bars-filter' icon={faBars} /> More Filters
                     </Button>
+
+                    <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
+                        <p>Some contents...</p>
+                        <p>Some contents...</p>
+                        <p>Some contents...</p>
+                    </Drawer>
                     
                 </div>
                 
