@@ -1,0 +1,248 @@
+/* Small screens */
+@media only screen and (max-width: 600px) {
+    .risk-treatment-detail .main-table-detail .header {
+        display: grid !important;
+    }
+
+    .risk-treatment-detail .main-table-detail .header .btn-right {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .risk-treatment-detail .main-table-detail .header .btn-right .btn-filter {
+        width: 150px;
+    }
+
+    .risk-treatment-detail .main-table-detail .header .btn-right .ar-select{
+        margin-right: 0 !important;
+        margin-bottom: 20px;
+    }
+}
+  
+/* Medium screens */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+
+}
+
+/* Large screens */
+@media only screen and (min-width: 1025px) {
+
+}
+
+
+.main-matrix .residual-risk-matrix .ar-table-tbody .ar-table-cell:nth-child(2) {
+    background: #54e69d; /* columns-color-green */
+}
+
+.main-matrix .residual-risk-matrix .ar-table-tbody .ar-table-cell:nth-child(3) {
+    background: #eef157;
+}
+
+.main-matrix .residual-risk-matrix .ar-table-tbody .ar-table-cell:nth-child(4) {
+    background: #ffc36d;
+}
+
+.main-matrix .residual-risk-matrix .ar-table-tbody .ar-table-cell:nth-child(5),
+.main-matrix .residual-risk-matrix .ar-table-tbody td:nth-child(6) {
+    background: #ff7676;
+}
+
+.main-matrix {
+    padding: 20px;
+}
+
+.main-matrix .risk-matrix .header .title {
+    color: var(--232D42-Text-Color-1, #232D42);
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 175%;
+}
+
+.main-matrix .risk-matrix .header {
+    margin-bottom: 20px;
+}
+
+.main-matrix .risk-matrix .box-content .box {
+    border-radius: 8px;
+    background: #FFF;
+    height: 117px;
+    display: flex;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+    align-items: center;
+    padding-left: 30px;
+}
+
+.main-matrix .risk-matrix .box-content .box .icon .icon-chart-area {
+    font-size: 25px;
+    color: #FFF;
+}
+
+.main-matrix .risk-matrix .box-content .box .icon {
+   
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+}
+
+.main-matrix .risk-matrix .box-content .box .chart1 {
+    background: #54E69D;
+}
+
+.main-matrix .risk-matrix .box-content .box .chart2 {
+    background: #FFC36D;
+}
+
+.main-matrix .risk-matrix .box-content .box .text span {
+    color: var(--8A92A6-Text-Color-2, #8A92A6);
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 175%; /* 28px */
+}
+
+.main-matrix .risk-matrix .box-content .box .text h3 {
+    color: var(--232D42-Text-Color-1, #232D42);
+    font-family: Poppins;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 175%; /* 38.5px */
+    margin: 0;
+}
+
+.main-matrix .risk-matrix .box-content .box .text {
+    padding-top: 16px;
+}
+
+.main-matrix .residual-risk-matrix .header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-matrix .residual-risk-matrix {
+    margin-top: 20px;
+}
+
+.main-matrix .residual-risk-matrix .header .ar-select {
+    width: 230px;
+    border-radius: 10px;
+    background: #FFF;
+}
+
+.main-matrix .residual-risk-matrix .header .title {
+    color: var(--232D42-Text-Color-1, #232D42);
+    font-family: Poppins;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 175%; /* 38.5px */
+}
+
+.main-matrix .residual-risk-matrix .ar-spin-nested-loading {
+    border-radius: 8px 8px 0 0;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+
+.main-matrix .residual-risk-matrix .ar-table-thead .ar-table-cell {
+    background-color: #FFF;
+}
+
+.main-matrix .residual-risk-matrix .ar-table-tbody .ar-table-cell {
+    background-color: #FFF;
+    color: var(--232D42-Text-Color-1, #232D42);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal; 
+    font-weight: 500;
+    line-height: 173%; /* 27.68px */
+}
+
+.ar-table-row .ar-table-cell:nth-child(1)  {
+    text-align: left !important;
+}
+
+
+.risk-treatment-detail {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.risk-treatment-detail .main-table-detail .header button .icon-bars-filter {
+    margin-right: 10px;
+}
+
+.risk-treatment-detail .main-table-detail .header .title {
+    color: var(--232D42-Text-Color-1, #232D42);
+    font-family: Poppins;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 175%;
+}
+
+.risk-treatment-detail .main-table-detail .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.risk-treatment-detail .main-table-detail .header .btn-right .ar-select {
+    width: 150px;
+    margin-right: 10px;
+    border-radius: 10px;
+    background: #FFF;
+}
+
+.risk-treatment-detail .main-table-detail .header .btn-right .ar-select-selector {
+    border: 1px solid #D1D1D1;
+}
+
+.risk-treatment-detail .main-table-detail .striped-table tbody tr:nth-child(odd) {
+    border: 1px solid #EAECF0;
+    background: #f0f1f3;
+}
+
+.risk-treatment-detail .main-table-detail .ar-pagination {
+    display: none;
+}
+
+.risk-treatment-detail .main-table-detail thead tr .ar-table-cell {
+    /* border-radius: 8px 8px 0px 0px;   */
+    border-top: 1px solid #EAECF0;
+    border-bottom: 1px solid #EAECF0;
+    background: #F9FAFB;
+    height: 50px;
+    padding: 10px 25px;
+    color: var(--8A92A6-Text-Color-2, #8A92A6);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 175%;
+}
+
+.risk-treatment-detail .main-table-detail thead tr .ar-table-cell span svg {
+    margin-left: 5px;
+    width: 9.333px;
+    height: 9.333px;
+}
+
+.risk-treatment-detail .main-table-detail .ar-table-tbody .ar-table-row .ar-table-cell {
+    border-bottom: 1px solid #EAECF0;
+    background: rgba(255, 255, 255, 0.50);
+    padding: 10px 25px;
+}
+
+.risk-treatment-detail .main-table-detail .ar-table-content {
+    box-shadow: 0px 10px 13px 0px rgba(17, 38, 146, 0.05);
+    border-radius: 8px;
+}

@@ -1,3 +1,62 @@
+
+/* Small screens */
+@media only screen and (max-width: 600px) {
+   .risk-treatment-detail .main-table-detail .header {
+       display: grid !important;
+   }
+
+   .risk-treatment-detail .main-table-detail .header .btn-right {
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: space-between;
+       margin-bottom: 10px;
+   }
+
+   .risk-treatment-detail .main-table-detail .header .btn-right .btn-filter {
+       width: 150px;
+   }
+
+   .risk-treatment-detail .main-table-detail .header .btn-right .ar-select {
+       margin-right: 0 !important;
+       margin-bottom: 20px;
+   }
+}
+ 
+/* Medium screens */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+   .risk-treatment-detail .main-table-detail .header {
+       display: grid !important;
+   }
+
+   .risk-treatment-detail .main-table-detail .header .btn-right .btn-bar-filter {
+       width: 150px;
+   }
+
+   .risk-treatment-detail .main-table-detail .header .btn-right {
+       margin-bottom: 10px !important;
+       display: flex;
+   }
+
+   .risk-treatment-detail .main-table-detail .header .btn-right .icon-bars-filter {
+       margin-right: 10px !important;
+   }
+
+   .risk-treatment-detail .main-table-detail .header .btn-right .icon-bars-filter {
+       margin-bottom: 0 !important;
+   }
+
+   .risk-treatment-detail .main-table-detail .header .btn-right .btn-filter {
+       width: 150px ;
+   }
+}
+
+/* Large screens */
+@media only screen and (min-width: 1025px) {
+   .risk-treatment-detail .main-table-detail .header .btn-right {
+       display: flex;
+   }
+}
+
 .main-home {
    padding: 12px;
    background: #F8F9FC;
@@ -19,6 +78,10 @@
    line-height: 175%; /* 31.5px */
 }
 
+.main-home .risk-treatment-status .header .btn-right-select .btn-right-filter {
+   margin-right: 10px;
+}
+
 .main-home .cart-content {
    width: inherit;
    height: 117px;
@@ -26,17 +89,52 @@
    border-radius: 8px;
    background: #FFF;
    display: flex;
+   align-items: center;
    padding: 20px;
    box-shadow: 0px 10px 13px 0px rgba(17, 38, 146, 0.05);
+}
+
+.main-home .cart-content .icon-chart-area {
+   font-size: 25px;
+   color: #FFF;
 }
 
 .main-home .cart-content .icon {
    width: 50px;
    height: 50px;
+   border-radius: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-right: 40px;
+}
+
+.main-home .cart-content .chart1 {
+   background: #54E69D;
+}
+
+.main-home .cart-content .chart2 {
+   background: #DDDFEB;
+}
+
+.main-home .cart-content .chart3 {
+   background: #85B4F2;
+}
+
+.main-home .cart-content .chart4 {
+   background: #EEF157;
+}
+
+.main-home .cart-content .chart5 {
+   background: #FFC36D;
+}
+
+.main-home .cart-content .chart6 {
+   background: #FF7676;
 }
 
 .main-home .cart-content .text-cart {
-   margin-left: 40px;
+   padding-top: 10px;
    display: grid;
    align-items: end;
 }
@@ -72,11 +170,11 @@
    line-height: 175%; /* 31.5px */
 }
 
-.risk-summary .table-content .ant-table-pagination {
+.risk-summary .table-content .ar-table-pagination {
   display: none;
 }
 
-.risk-summary .table-content .ant-table-wrapper {
+.risk-summary .table-content .ar-table-wrapper {
    box-shadow: 0px 10px 13px 0px rgba(17, 38, 146, 0.05);
    border-radius: 8px;
 }
@@ -92,9 +190,7 @@
    justify-content: space-between;
 }
 
-.risk-summary .table-content .ant-table-footer {
-   padding: 0;
-}
+
 
 .risk-summary .table-content .main-footer .pagination-footer li {
    color: var(--Gray-700, #344054);
@@ -116,6 +212,9 @@
 
 .risk-summary .table-content .main-footer .pagination-footer .pagination {
    margin: 0;
+   padding: 0;
+   display: flex;
+   list-style-type: none;
 }
 
 .risk-summary .table-content .main-footer .pagination-footer  {
@@ -123,11 +222,11 @@
    align-items: center;
 }
 
-.risk-summary .table-content .ant-table-thead tr {
+.risk-summary .table-content .ar-table-thead tr {
    border-radius: 8px 8px 0px 0px;
 }
 
-.risk-summary .table-content .ant-table-thead tr th {
+.risk-summary .table-content .ar-table-thead tr th {
    color: var(--8A92A6-Text-Color-2, #8A92A6);
    font-family: Poppins;
    font-size: 14px;
@@ -145,16 +244,16 @@
 
 }
 
-.risk-summary .table-content .ant-table-cell {
+.risk-summary .table-content .ar-table-cell {
    border-bottom: 1px solid #EAECF0;
    background: #FFF;
 }
 
-.risk-summary .table-content .ant-table {
+.risk-summary .table-content .ar-table {
    border-radius: 8px;
 }
 
-.risk-summary .table-content .ant-table-tbody tr  .ant-table-cell {
+.risk-summary .table-content .ar-table-tbody tr  .ar-table-cell {
    padding: 20px 16px;
 }
 
@@ -195,18 +294,18 @@
 
 .risk-treatment-detail .main-table-detail .header {
    display: flex;
-   align-items: flex-start;
+   align-items: center;
    justify-content: space-between;
 }
 
-.risk-treatment-detail .main-table-detail .header .btn-right .ant-select {
+.risk-treatment-detail .main-table-detail .header .btn-right .ar-select {
    width: 150px;
    margin-right: 10px;
    border-radius: 10px;
    background: #FFF;
 }
 
-.risk-treatment-detail .main-table-detail .header .btn-right .ant-select-selector {
+.risk-treatment-detail .main-table-detail .header .btn-right .ar-select-selector {
    border: 1px solid #D1D1D1;
 }
 
@@ -215,11 +314,11 @@
    background: #f0f1f3;
 }
 
-.risk-treatment-detail .main-table-detail .ant-pagination {
+.risk-treatment-detail .main-table-detail .ar-pagination {
    display: none;
 }
 
-.risk-treatment-detail .main-table-detail thead tr .ant-table-cell {
+.risk-treatment-detail .main-table-detail thead tr .ar-table-cell {
    /* border-radius: 8px 8px 0px 0px;   */
    border-top: 1px solid #EAECF0;
    border-bottom: 1px solid #EAECF0;
@@ -234,19 +333,33 @@
    line-height: 175%;
 }
 
-.risk-treatment-detail .main-table-detail thead tr .ant-table-cell span svg {
+.risk-treatment-detail .main-table-detail thead tr .ar-table-cell span svg {
    margin-left: 5px;
    width: 9.333px;
    height: 9.333px;
 }
 
-.risk-treatment-detail .main-table-detail .ant-table-tbody .ant-table-row .ant-table-cell {
+.risk-treatment-detail .main-table-detail .ar-table-tbody .ar-table-row .ar-table-cell {
    border-bottom: 1px solid #EAECF0;
    background: rgba(255, 255, 255, 0.50);
    padding: 10px 25px;
 }
 
-.risk-treatment-detail .main-table-detail .ant-table-content {
+.risk-treatment-detail .main-table-detail .ar-table-content {
    box-shadow: 0px 10px 13px 0px rgba(17, 38, 146, 0.05);
    border-radius: 8px;
+}
+
+.risk-treatment-detail .main-table-detail .header .btn-bar-filter .icon-bars-filter {
+   margin-right: 10px;
+}
+
+.risk-treatment-detail .main-table-detail .header .btn-bar-filter {
+   display: flex;
+   align-items: center;
+   width: 150px;
+}
+
+.risk-summary .table-content .ar-table-footer {
+   padding: 0 !important;
 }
