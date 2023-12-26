@@ -36,6 +36,25 @@ for (let i = 0; i < 3; i++) {
 }
 
 export default function Page() {
+    const [openTreatmentCategory, setOpenTreatmentCategory] = useState(false);
+    const [openDrawerTreatmentDetail, setOpenDrawerTreatmentDetail] = useState(false);
+
+    const showDrawerTreatmentCategory = () => {
+        setOpenTreatmentCategory(true);
+    };
+
+    const onCloseTreatmentCategory = () => {
+        setOpenTreatmentCategory(false);
+    };
+
+    const showDrawerTreatmentDetail = () => {
+        setOpenDrawerTreatmentDetail(true);
+    };
+
+    const onCloseTreatmentDetail = () => {
+        setOpenDrawerTreatmentDetail(false);
+    };
+
     const handleChange = (value:string) => {
         console.log(value); 
     };
@@ -183,15 +202,7 @@ export default function Page() {
     
     ];
 
-    const [open, setOpen] = useState(false);
-
-    const showDrawer = () => {
-        setOpen(true);
-    };
-
-    const onClose = () => {
-        setOpen(false);
-    };
+    
 
   return (<ConfigProvider prefixCls="ar" iconPrefixCls="aricon">
     
@@ -265,11 +276,11 @@ export default function Page() {
                         ]}
                     />
 
-                    <Button className="btn-right-filter btn-bar-filter" onClick={showDrawer}>
+                    <Button className="btn-right-filter btn-bar-filter" onClick={showDrawerTreatmentCategory}>
                         <FontAwesomeIcon className='icon-bars-filter' icon={faBars} /> More Filters
                     </Button>
 
-                    <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
+                    <Drawer title="Treatment Category" placement="right" onClose={onCloseTreatmentCategory} open={openTreatmentCategory}>
                         <p>Some contents...</p>
                         <p>Some contents...</p>
                         <p>Some contents...</p>
@@ -452,9 +463,15 @@ export default function Page() {
                             },
                             ]}
                         />
-                        <Button className="btn-bar-filter">
-                            <FontAwesomeIcon className='icon-bars-filter' icon={faBars} />More Filters
+                        <Button className="btn-bar-filter" onClick={showDrawerTreatmentDetail}>
+                            <FontAwesomeIcon className='icon-bars-filter' icon={faBars} /> More Filters
                         </Button>
+
+                        <Drawer title="Treatment Detail" placement="right" onClose={onCloseTreatmentDetail} open={openDrawerTreatmentDetail}>
+                            <p>Some contents...</p>
+                            <p>Some contents...</p>
+                            <p>Some contents...</p>
+                        </Drawer>
                     </div>
                 </div>
                 <div className="table-detail">
