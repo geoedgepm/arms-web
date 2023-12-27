@@ -292,7 +292,7 @@ export default function Page() {
             <div className="box">
 
                 <Row gutter={[16,16]}>
-                    <Col span={4}>
+                    <Col span={4} sm={24} md={24} xl={4}>
                         <Card bordered={false}>
                             <Statistic
                             title="Done"
@@ -304,7 +304,7 @@ export default function Page() {
                             />
                         </Card>
                     </Col>
-                    <Col span={4}>
+                    <Col span={4} sm={24} md={24} xl={4}>
                         <Card bordered={false}>
                             <Statistic
                                 title="Cancelled"
@@ -316,7 +316,7 @@ export default function Page() {
                             />
                         </Card>
                     </Col>
-                    <Col span={4}>
+                    <Col span={4} sm={24} md={24} xl={4}>
                         <Card bordered={false}>
                             <Statistic
                                 title="Not Started"
@@ -328,7 +328,7 @@ export default function Page() {
                             />
                         </Card>
                     </Col>
-                    <Col span={4}>
+                    <Col span={4} sm={24} md={24} xl={4}>
                         <Card bordered={false}>
                             <Statistic
                                 title="In Progress"
@@ -340,7 +340,7 @@ export default function Page() {
                             />
                         </Card>
                     </Col>
-                    <Col span={4}>
+                    <Col span={4} sm={24} md={24} xl={4}>
                         <Card bordered={false}>
                             <Statistic
                                 title="Near Due Date"
@@ -352,7 +352,7 @@ export default function Page() {
                             />
                         </Card>
                     </Col>
-                    <Col span={4}>
+                    <Col span={4} xs={24} md={24} xl={4}>
                         <Card bordered={false}>
                             <Statistic
                                 title="Overdue"
