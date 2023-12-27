@@ -39,11 +39,11 @@ function getItem(
 const items: MenuItem[] = [
   getItem('Dashboard', '/', '1', <PieChartOutlined />),
   getItem('Risk Matrix', '/riskmatrix', '2', <DesktopOutlined />),
-  getItem('Risk Details', '/riskmatrix', '2', <DesktopOutlined />),
+  getItem('Risk Details', '/riskdetail', '3', <DesktopOutlined />),
   getItem('User', '/riskmatrix', 'sub1', <UserOutlined />, [
-    getItem('Tom', '/riskmatrix', '3'),
-    getItem('Bill', '/riskmatrix', '4'),
-    getItem('Alex', '/riskmatrix', '5'),
+    getItem('Tom', '/riskmatrix', '4'),
+    getItem('Bill', '/riskmatrix', '5'),
+    getItem('Alex', '/riskmatrix', '6'),
   ]),
   getItem('Files', '/riskmatrix', '9', <FileOutlined />),
 ];
