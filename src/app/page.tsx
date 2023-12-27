@@ -13,7 +13,9 @@ import {
 } from '@/components';
 import {
     ArrowDownOutlined,
-    ArrowUpOutlined
+    ArrowUpOutlined,
+    CheckOutlined,
+    RollbackOutlined
 } from '@/components/icons'
 import { 
     faArrowDown, 
@@ -299,8 +301,7 @@ export default function Page() {
                             value={11.28}
                             precision={2}
                             valueStyle={{ color: '#3f8600' }}
-                            prefix={<ArrowUpOutlined />}
-                            suffix="%"
+                            prefix={<CheckOutlined />}
                             />
                         </Card>
                     </Col>
@@ -311,8 +312,7 @@ export default function Page() {
                                 value={9.3}
                                 precision={2}
                                 valueStyle={{ color: '#cf1322' }}
-                                prefix={<ArrowDownOutlined />}
-                                suffix="%"
+                                prefix={<RollbackOutlined />}
                             />
                         </Card>
                     </Col>
@@ -322,9 +322,8 @@ export default function Page() {
                                 title="Not Started"
                                 value={9.3}
                                 precision={2}
-                                valueStyle={{ color: '#cf1322' }}
+                                // valueStyle={{ color: '#cf1322' }}
                                 prefix={<ArrowDownOutlined />}
-                                suffix="%"
                             />
                         </Card>
                     </Col>
@@ -334,9 +333,8 @@ export default function Page() {
                                 title="In Progress"
                                 value={9.3}
                                 precision={2}
-                                valueStyle={{ color: '#cf1322' }}
+                                valueStyle={{ color: '#1677ff' }}
                                 prefix={<ArrowDownOutlined />}
-                                suffix="%"
                             />
                         </Card>
                     </Col>
@@ -348,7 +346,6 @@ export default function Page() {
                                 precision={2}
                                 valueStyle={{ color: '#cf1322' }}
                                 prefix={<ArrowDownOutlined />}
-                                suffix="%"
                             />
                         </Card>
                     </Col>
@@ -360,7 +357,6 @@ export default function Page() {
                                 precision={2}
                                 valueStyle={{ color: '#cf1322' }}
                                 prefix={<ArrowDownOutlined />}
-                                suffix="%"
                             />
                         </Card>
                     </Col>
