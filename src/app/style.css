@@ -71,7 +71,6 @@
 
 .main-home .risk-treatment-status .header .title {
    color: var(--232D42-Text-Color-1, #232D42);
-   font-family: Poppins;
    font-size: 18px;
    font-style: normal;
    font-weight: 600;
@@ -145,7 +144,6 @@
 
 .main-home .cart-content .text-cart .text1 {
    color: var(--8A92A6-Text-Color-2, #8A92A6);
-   font-family: Poppins;
    font-size: 16px;
    font-style: normal;
    font-weight: 400;
@@ -154,7 +152,6 @@
 
 .main-home .cart-content .text-cart .text2 {
    color: var(--232D42-Text-Color-1, #232D42);
-   font-family: Poppins;
    font-size: 22px;
    font-style: normal;
    font-weight: 700;
@@ -167,7 +164,6 @@
 
 .risk-summary .header .title {
    color: var(--232D42-Text-Color-1, #232D42);
-   font-family: Poppins;
    font-size: 18px;
    font-style: normal;
    font-weight: 600;
@@ -232,7 +228,6 @@
 
 .risk-summary .table-content .ar-table-thead tr th {
    color: var(--8A92A6-Text-Color-2, #8A92A6);
-   font-family: Poppins;
    font-size: 14px;
    font-style: normal;
    font-weight: 400;
@@ -263,7 +258,6 @@
 
 .main-risk-treatment-category .header .title {
    color: var(--232D42-Text-Color-1, #232D42);
-   font-family: Poppins;
    font-size: 18px;
    font-style: normal;
    font-weight: 600;
@@ -289,7 +283,6 @@
 
 .risk-treatment-detail .main-table-detail .header .title {
    color: var(--232D42-Text-Color-1, #232D42);
-   font-family: Poppins;
    font-size: 22px;
    font-style: normal;
    font-weight: 600;
@@ -337,7 +330,6 @@
    height: 50px;
    padding: 10px 25px;
    color: var(--8A92A6-Text-Color-2, #8A92A6);
-   font-family: Poppins;
    font-size: 14px;
    font-style: normal;
    font-weight: 400;

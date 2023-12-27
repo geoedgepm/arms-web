@@ -30,7 +30,7 @@ const DoughnutChart = () => {
 
     const dougnutLabel = {
         id: 'dougnutLabel', 
-        afterDatasetsDraw(chart, args, plugins) {
+        afterDatasetsDraw(chart: any, args: any, plugins: any) {
             const {ctx, data} = chart;
 
             const centerX = chart.getDatasetMeta(0).data[0].x;
@@ -54,11 +54,12 @@ const DoughnutChart = () => {
         },
     }
     return (
-        <Doughnut 
-            data={data} 
-            options={options}
-            plugins={[dougnutLabel]}
-        />
+        // <Doughnut 
+        //     data={data} 
+        //     options={options}
+        //     plugins={[dougnutLabel]}
+        // />
+        <div />
     )
 }
 
