@@ -11,6 +11,7 @@ import {
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 import { Breadcrumb, Layout, Menu, theme } from 'antd'
+import Link from 'next/link'
 import './globals.css'
 import StyledComponentsRegistry from '../../lib/AntdRegistry'
 
@@ -22,6 +23,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 function getItem(
   label: React.ReactNode,
+  path: string,
   key: React.Key,
   icon?: React.ReactNode,
   children?: MenuItem[],
@@ -30,20 +32,20 @@ function getItem(
     key,
     icon,
     children,
-    label,
+    label: <Link href={path}>{label}</Link>,
   } as MenuItem;
 }
 
 const items: MenuItem[] = [
-  getItem('Dashboard', '1', <PieChartOutlined />),
-  getItem('Risk Matrix', '2', <DesktopOutlined />),
-  getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '3'),
-    getItem('Bill', '4'),
-    getItem('Alex', '5'),
+  getItem('Dashboard', '/', '1', <PieChartOutlined />),
+  getItem('Risk Matrix', '/riskmatrix', '2', <DesktopOutlined />),
+  getItem('Risk Details', '/riskmatrix', '2', <DesktopOutlined />),
+  getItem('User', '/riskmatrix', 'sub1', <UserOutlined />, [
+    getItem('Tom', '/riskmatrix', '3'),
+    getItem('Bill', '/riskmatrix', '4'),
+    getItem('Alex', '/riskmatrix', '5'),
   ]),
-  getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  getItem('Files', '9', <FileOutlined />),
+  getItem('Files', '/riskmatrix', '9', <FileOutlined />),
 ];
 
 const metadata: Metadata = {

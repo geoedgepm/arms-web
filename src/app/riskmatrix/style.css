@@ -54,7 +54,6 @@
 
 .main-matrix .risk-matrix .header .title {
     color: var(--232D42-Text-Color-1, #232D42);
-    font-family: Poppins;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -101,7 +100,6 @@
 
 .main-matrix .risk-matrix .box-content .box .text span {
     color: var(--8A92A6-Text-Color-2, #8A92A6);
-    font-family: Poppins;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -110,7 +108,6 @@
 
 .main-matrix .risk-matrix .box-content .box .text h3 {
     color: var(--232D42-Text-Color-1, #232D42);
-    font-family: Poppins;
     font-size: 22px;
     font-style: normal;
     font-weight: 700;
@@ -139,7 +136,6 @@
 
 .main-matrix .residual-risk-matrix .header .title {
     color: var(--232D42-Text-Color-1, #232D42);
-    font-family: Poppins;
     font-size: 22px;
     font-style: normal;
     font-weight: 600;
@@ -159,7 +155,6 @@
     background-color: #FFF;
     color: var(--232D42-Text-Color-1, #232D42);
     text-align: center;
-    font-family: Poppins;
     font-size: 16px;
     font-style: normal; 
     font-weight: 500;
@@ -182,7 +177,6 @@
 
 .risk-treatment-detail .main-table-detail .header .title {
     color: var(--232D42-Text-Color-1, #232D42);
-    font-family: Poppins;
     font-size: 22px;
     font-style: normal;
     font-weight: 600;
@@ -223,7 +217,6 @@
     height: 50px;
     padding: 10px 25px;
     color: var(--8A92A6-Text-Color-2, #8A92A6);
-    font-family: Poppins;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
