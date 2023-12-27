@@ -309,6 +309,13 @@
    background: #FFF;
 }
 
+.main-home .risk-treatment-status .header .btn-right-select .btn-right-filter {
+   width: 150px;
+   margin-right: 10px;
+   border-radius: 10px;
+   background: #FFF;
+}
+
 .risk-treatment-detail .main-table-detail .header .btn-right .ar-select-selector {
    border: 1px solid #D1D1D1;
 }
