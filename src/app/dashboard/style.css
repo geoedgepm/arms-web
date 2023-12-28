@@ -11,7 +11,7 @@
 }
 
 .main-home .risk-treatment-status .header .title {
-   color: var(--232D42-Text-Color-1, #232D42);
+   color: var(#232D42);
    font-size: 18px;
    font-style: normal;
    font-weight: 600;
@@ -226,19 +226,19 @@
    line-height: 175%;
 }
 
-.risk-treatment-detail .main-table-detail thead tr .ant-table-cell span svg {
+.risk-treatment-detail .main-table-detail thead tr .ar-table-cell span svg {
    margin-left: 5px;
    width: 9.333px;
    height: 9.333px;
 }
 
-.risk-treatment-detail .main-table-detail .ant-table-tbody .ant-table-row .ant-table-cell {
+.risk-treatment-detail .main-table-detail .ar-table-tbody .ar-table-row .ar-table-cell {
    border-bottom: 1px solid #EAECF0;
    background: rgba(255, 255, 255, 0.50);
    padding: 10px 25px;
 }
 
-.risk-treatment-detail .main-table-detail .ant-table-content {
+.risk-treatment-detail .main-table-detail .ar-table-content {
    box-shadow: 0px 10px 13px 0px rgba(17, 38, 146, 0.05);
    border-radius: 8px;
 }

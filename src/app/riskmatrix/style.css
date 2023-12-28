@@ -135,7 +135,7 @@
 }
 
 .main-matrix .residual-risk-matrix .header .title {
-    color: var(--232D42-Text-Color-1, #232D42);
+    color: #232D42;
     font-size: 22px;
     font-style: normal;
     font-weight: 600;
@@ -153,89 +153,19 @@
 
 .main-matrix .residual-risk-matrix .ar-table-tbody .ar-table-cell {
     background-color: #FFF;
-    color: var(--232D42-Text-Color-1, #232D42);
+    color: #232D42;
     text-align: center;
     font-size: 16px;
     font-style: normal; 
     font-weight: 500;
-    line-height: 173%; /* 27.68px */
+    line-height: 173%;
 }
 
 .ar-table-row .ar-table-cell:nth-child(1)  {
     text-align: left !important;
 }
 
-
 .risk-treatment-detail {
     margin-top: 20px;
     margin-bottom: 20px;
-}
-
-.risk-treatment-detail .main-table-detail .header button .icon-bars-filter {
-    margin-right: 10px;
-}
-
-.risk-treatment-detail .main-table-detail .header .title {
-    color: var(--232D42-Text-Color-1, #232D42);
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 175%;
-}
-
-.risk-treatment-detail .main-table-detail .header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-}
-
-.risk-treatment-detail .main-table-detail .header .btn-right .ar-select {
-    width: 150px;
-    margin-right: 10px;
-    border-radius: 10px;
-    background: #FFF;
-}
-
-.risk-treatment-detail .main-table-detail .header .btn-right .ar-select-selector {
-    border: 1px solid #D1D1D1;
-}
-
-.risk-treatment-detail .main-table-detail .striped-table tbody tr:nth-child(odd) {
-    border: 1px solid #EAECF0;
-    background: #f0f1f3;
-}
-
-.risk-treatment-detail .main-table-detail .ar-pagination {
-    display: none;
-}
-
-.risk-treatment-detail .main-table-detail thead tr .ar-table-cell {
-    /* border-radius: 8px 8px 0px 0px;   */
-    border-top: 1px solid #EAECF0;
-    border-bottom: 1px solid #EAECF0;
-    background: #F9FAFB;
-    height: 50px;
-    padding: 10px 25px;
-    color: var(--8A92A6-Text-Color-2, #8A92A6);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 175%;
-}
-
-.risk-treatment-detail .main-table-detail thead tr .ar-table-cell span svg {
-    margin-left: 5px;
-    width: 9.333px;
-    height: 9.333px;
-}
-
-.risk-treatment-detail .main-table-detail .ar-table-tbody .ar-table-row .ar-table-cell {
-    border-bottom: 1px solid #EAECF0;
-    background: rgba(255, 255, 255, 0.50);
-    padding: 10px 25px;
-}
-
-.risk-treatment-detail .main-table-detail .ar-table-content {
-    box-shadow: 0px 10px 13px 0px rgba(17, 38, 146, 0.05);
-    border-radius: 8px;
 }
