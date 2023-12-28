@@ -322,7 +322,6 @@ export default function Page() {
                                 title="Not Started"
                                 value={9.3}
                                 precision={2}
-                                // valueStyle={{ color: '#cf1322' }}
                                 prefix={<ArrowDownOutlined />}
                             />
                         </Card>
@@ -407,7 +406,7 @@ export default function Page() {
             </Row>
         </section>
         <section className="risk-treatment-detail">
-            <div className="main-table-detail">
+            <div className="main-table">
                 <div className="header">
                     <h2 className="title">Impact Risk Treatment Details</h2>
                     <div className="btn-right">

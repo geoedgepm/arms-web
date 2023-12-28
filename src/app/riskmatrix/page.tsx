@@ -270,7 +270,7 @@ export default function RiskMatrix() {
             </section>
 
             <section className="risk-treatment-detail">
-                <div className="main-table-detail">
+                <div className="main-table">
                     <div className="header">
                         <h2 className="title">Impact Risk Treatment Details</h2>
                         <div className="btn-right">
@@ -334,6 +334,7 @@ export default function RiskMatrix() {
                         columns={columnsDetail}
                         rowKey="key"
                         className="striped-table" 
+                        pagination={false}
                         />
                     </div>
                 </div>
