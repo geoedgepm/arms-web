@@ -54,12 +54,11 @@ const DoughnutChart = () => {
         },
     }
     return (
-        // <Doughnut 
-        //     data={data} 
-        //     options={options}
-        //     plugins={[dougnutLabel]}
-        // />
-        <div />
+        <Doughnut 
+            data={data} 
+            // options={options}
+            plugins={[dougnutLabel]}
+        />
     )
 }
 
