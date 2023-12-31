@@ -22,6 +22,7 @@ import {
     faBars
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getRiskCount } from '@/services/dashboard';
 // import DoughnutChart from "./doughnutChart";
 import DoughnutChart from '@/components/chart/doughnut-chart';
 import './style.css';
@@ -40,6 +41,13 @@ for (let i = 0; i < 3; i++) {
 export default function Page() {
     const [openTreatmentCategory, setOpenTreatmentCategory] = useState(false);
     const [openDrawerTreatmentDetail, setOpenDrawerTreatmentDetail] = useState(false);
+
+    React.useEffect(() => {
+        getRiskCount()
+        .then(response => {
+           console.log('DDDDDDD:', response); 
+        });
+    }, []);
 
     const showDrawerTreatmentCategory = () => {
         setOpenTreatmentCategory(true);
