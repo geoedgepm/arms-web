@@ -12,8 +12,6 @@ import {
     Drawer 
 } from '@/components';
 import {
-    ArrowDownOutlined,
-    ArrowUpOutlined,
     CalendarOutlined,
     CheckOutlined,
     FieldTimeOutlined,
@@ -26,7 +24,7 @@ import {
     faBars
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getRiskCount } from '@/services/dashboard';
+import { getDashboardData, getSelectOptions, getRiskCount } from '@/services/dashboard';
 // import DoughnutChart from "./doughnutChart";
 import DoughnutChart from '@/components/chart/doughnut-chart';
 import './style.css';
@@ -45,22 +43,34 @@ for (let i = 0; i < 3; i++) {
 
 export default function Page() {
     const [state, setState] = useState<any>({
+        option: {},
         riskCount: {},
+        riskSummaries: [],
+        riskTreatmentDetails: []
     });
     const [openTreatmentCategory, setOpenTreatmentCategory] = useState(false);
     const [openDrawerTreatmentDetail, setOpenDrawerTreatmentDetail] = useState(false);
 
     React.useEffect(() => {
-        getRiskCount()
+        featchDashboardData();
+    }, []);
+
+    const featchDashboardData = () => {
+        getDashboardData()
         .then((response: any) => {
             if (response && response?.data) {
+                const data = response.data;
+
                 setState((prevState: any) => ({
                     ...prevState,
-                    riskCount: Helper.getInstance().transformArrayToObject(response.data)
+                    option: data.options,
+                    riskCount: Helper.getInstance().transformArrayToObject(data.riskCount),
+                    riskSummaries: data.riskSummaries,
+                    riskTreatmentDetails: data.riskTreatmentDetails
                 }));
             }
         });
-    }, []);
+    }
 
     const showDrawerTreatmentCategory = () => {
         setOpenTreatmentCategory(true);
@@ -82,27 +92,31 @@ export default function Page() {
         console.log(value); 
     };
 
-    const columns = [
+    const handleStatus = (value: string) => {
+
+    }
+
+    const riskSummaryColumns = [
         {
           title: 'Risk ID',
-          dataIndex: 'risk_id',
+          dataIndex: 'riskId',
           width: 150,
         },
         {
           title: 'Risk Event',
-          dataIndex: 'risk_event',
+          dataIndex: 'riskEvent',
         },
         {
           title: 'Impact Count',
-          dataIndex: 'impact_count',
+          dataIndex: 'impRiskTreatment',
           width: 150,
         },
         {
             title: 'Likelihood Count',
-            dataIndex: 'likelihood_count',
+            dataIndex: 'likRiskTreatment',
             width: 150,
           },
-      ];
+    ];
 
     const data = [];
         for (let i = 0; i < 3; i++) {
@@ -115,7 +129,7 @@ export default function Page() {
         });
     }
 
-    const columnsDetail = [
+    const riskTreatmentDetailColumns = [
         {
             title:     (
                 <span> 
@@ -131,8 +145,8 @@ export default function Page() {
                     Information <FontAwesomeIcon icon={faArrowDown} />
                 </span>
             ),
-            dataIndex: 'information',
-            key: 'information',
+            dataIndex: 'description',
+            key: 'description',
         },
         {
             title:     (
@@ -149,8 +163,8 @@ export default function Page() {
                   Focal Point <FontAwesomeIcon icon={faArrowDown} />
               </span>
             ),
-            dataIndex: 'focal_point',
-            key: 'focal_point',
+            dataIndex: 'pic',
+            key: 'pic',
         },
           {
             title:     (
@@ -158,8 +172,8 @@ export default function Page() {
                     Cost (USD) <FontAwesomeIcon icon={faArrowDown} />
                 </span>
             ),
-            dataIndex: 'cost_usd',
-            key: 'cost_usd',
+            dataIndex: 'cost',
+            key: 'cost',
           },
           {
             title:     (
@@ -167,8 +181,8 @@ export default function Page() {
                     Due Date <FontAwesomeIcon icon={faArrowDown} />
                 </span>
             ),
-            dataIndex: 'due_date',
-            key: 'due_date',
+            dataIndex: 'dueDate',
+            key: 'dueDate',
           },
           {
             title:     (
@@ -225,7 +239,7 @@ export default function Page() {
     
     ];
 
-    const { riskCount } = state;
+    const { option, riskCount, riskSummaries, riskTreatmentDetails } = state;
     
   return (<ConfigProvider prefixCls="ar" iconPrefixCls="aricon">
     <div className="main-home">
@@ -237,65 +251,28 @@ export default function Page() {
                         className="btn-right-filter"
                         placeholder="Select category"
                         onChange={handleChange}
-                        options={[
-                            {
-                                value: 'Impact1',
-                                label: 'Impact Risk Treatment',
-                            },
-                            {
-                                value: 'Impact2',
-                                label: 'Impact Risk Treatment',
-                            },
-                        ]}
+                        options={option?.categories ? option.categories : []}
                     />
 
                     <Select
                         className="btn-right-filter"
                         placeholder="Select devision"
                         onChange={handleChange}
-                        options={[
-                            {
-                                value: 'Impact1',
-                                label: 'Impact Risk Treatment',
-                            },
-                            {
-                                value: 'Impact2',
-                                label: 'Impact Risk Treatment',
-                            },
-                        ]}
+                        options={option?.divisions ? option.divisions : []}
                     />
 
                     <Select
                         className="btn-right-filter"
                         placeholder="Select status"
-                        onChange={handleChange}
-                        options={[
-                            {
-                                value: 'Impact1',
-                                label: 'Impact Risk Treatment',
-                            },
-                            {
-                                value: 'Impact2',
-                                label: 'Impact Risk Treatment',
-                            },
-                        ]}
+                        onChange={handleStatus}
+                        options={option?.statuses ? option.statuses : []}
                     />
 
                     <Select
                         className="btn-right-filter"
-                        labelInValue
                         defaultValue="Impact Risk Treatment"
                         onChange={handleChange}
-                        options={[
-                            {
-                                value: 'Impact1',
-                                label: 'Impact Risk Treatment',
-                            },
-                            {
-                                value: 'Impact2',
-                                label: 'Impact Risk Treatment',
-                            },
-                        ]}
+                        options={option?.riskTreatmentFors ? option.riskTreatmentFors : []}
                     />
 
                     <Button className="btn-right-filter btn-bar-filter" onClick={showDrawerTreatmentCategory}>
@@ -329,7 +306,7 @@ export default function Page() {
                         <Card bordered={false}>
                             <Statistic
                                 title="Cancelled"
-                                value={riskCount['In Progress']}
+                                value={riskCount['Cancelled']}
                                 precision={0}
                                 valueStyle={{ color: '#cf1322' }}
                                 prefix={<RollbackOutlined />}
@@ -386,8 +363,8 @@ export default function Page() {
                     </div>
                     <div className="table-content">
                         <Table
-                            columns={columns}
-                            dataSource={data}
+                            columns={riskSummaryColumns}
+                            dataSource={riskSummaries}
                             pagination={false}
                             scroll={{
                                 y: 240,
@@ -428,11 +405,11 @@ export default function Page() {
                 </div>
                 <div className="table-detail">
                     <Table
-                    dataSource={dataDetail}
-                    columns={columnsDetail}
-                    rowKey="key"
-                    className="striped-table" 
-                    pagination={false}
+                        dataSource={riskTreatmentDetails}
+                        columns={riskTreatmentDetailColumns}
+                        rowKey="key"
+                        className="striped-table" 
+                        pagination={false}
                     />
                 </div>
             </div>
