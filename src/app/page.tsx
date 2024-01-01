@@ -14,7 +14,11 @@ import {
 import {
     ArrowDownOutlined,
     ArrowUpOutlined,
+    CalendarOutlined,
     CheckOutlined,
+    FieldTimeOutlined,
+    LoadingOutlined,
+    OrderedListOutlined,
     RollbackOutlined
 } from '@/components/icons'
 import { 
@@ -26,6 +30,7 @@ import { getRiskCount } from '@/services/dashboard';
 // import DoughnutChart from "./doughnutChart";
 import DoughnutChart from '@/components/chart/doughnut-chart';
 import './style.css';
+import Helper from '@/helper';
 
 const data: any = [];
 for (let i = 0; i < 3; i++) {
@@ -39,13 +44,21 @@ for (let i = 0; i < 3; i++) {
 }
 
 export default function Page() {
+    const [state, setState] = useState<any>({
+        riskCount: {},
+    });
     const [openTreatmentCategory, setOpenTreatmentCategory] = useState(false);
     const [openDrawerTreatmentDetail, setOpenDrawerTreatmentDetail] = useState(false);
 
     React.useEffect(() => {
         getRiskCount()
-        .then(response => {
-           console.log('DDDDDDD:', response); 
+        .then((response: any) => {
+            if (response && response?.data) {
+                setState((prevState: any) => ({
+                    ...prevState,
+                    riskCount: Helper.getInstance().transformArrayToObject(response.data)
+                }));
+            }
         });
     }, []);
 
@@ -212,14 +225,13 @@ export default function Page() {
     
     ];
 
+    const { riskCount } = state;
     
-
   return (<ConfigProvider prefixCls="ar" iconPrefixCls="aricon">
-    
     <div className="main-home">
         <section className="risk-treatment-status">
             <div className="header">
-                <span className="title">Impact Risk Treatment Category</span>
+                <span className="title">Impact Risk Treatment Status</span>
                 <div className="btn-right-select">
                     <Select
                         className="btn-right-filter"
@@ -306,8 +318,8 @@ export default function Page() {
                         <Card bordered={false}>
                             <Statistic
                             title="Done"
-                            value={11.28}
-                            precision={2}
+                            value={riskCount?.Done}
+                            precision={0}
                             valueStyle={{ color: '#3f8600' }}
                             prefix={<CheckOutlined />}
                             />
@@ -317,8 +329,8 @@ export default function Page() {
                         <Card bordered={false}>
                             <Statistic
                                 title="Cancelled"
-                                value={9.3}
-                                precision={2}
+                                value={riskCount['In Progress']}
+                                precision={0}
                                 valueStyle={{ color: '#cf1322' }}
                                 prefix={<RollbackOutlined />}
                             />
@@ -328,9 +340,8 @@ export default function Page() {
                         <Card bordered={false}>
                             <Statistic
                                 title="Not Started"
-                                value={9.3}
-                                precision={2}
-                                prefix={<ArrowDownOutlined />}
+                                value={riskCount['Not Started']}
+                                prefix={<OrderedListOutlined />}
                             />
                         </Card>
                     </Col>
@@ -338,10 +349,9 @@ export default function Page() {
                         <Card bordered={false}>
                             <Statistic
                                 title="In Progress"
-                                value={9.3}
-                                precision={2}
+                                value={riskCount['In Progress']}
                                 valueStyle={{ color: '#1677ff' }}
-                                prefix={<ArrowDownOutlined />}
+                                prefix={<LoadingOutlined />}
                             />
                         </Card>
                     </Col>
@@ -349,10 +359,9 @@ export default function Page() {
                         <Card bordered={false}>
                             <Statistic
                                 title="Near Due Date"
-                                value={9.3}
-                                precision={2}
-                                valueStyle={{ color: '#cf1322' }}
-                                prefix={<ArrowDownOutlined />}
+                                value={riskCount['Near Due Date']}
+                                valueStyle={{ color: '#faad14' }}
+                                prefix={<CalendarOutlined />}
                             />
                         </Card>
                     </Col>
@@ -360,10 +369,9 @@ export default function Page() {
                         <Card bordered={false}>
                             <Statistic
                                 title="Overdue"
-                                value={9.3}
-                                precision={2}
+                                value={riskCount['Overdue']}
                                 valueStyle={{ color: '#cf1322' }}
-                                prefix={<ArrowDownOutlined />}
+                                prefix={<FieldTimeOutlined />}
                             />
                         </Card>
                     </Col>
@@ -417,65 +425,6 @@ export default function Page() {
             <div className="main-table">
                 <div className="header">
                     <h2 className="title">Impact Risk Treatment Details</h2>
-                    <div className="btn-right">
-                        <Select
-                            showSearch
-                            style={{
-                            }}
-                            placeholder="Select category"
-                            options={[
-                            {
-                                value: '1',
-                                label: 'Not Identified',
-                            },
-                            {
-                                value: '2',
-                                label: 'Closed',
-                            },
-                            ]}
-                        />
-                        <Select
-                            showSearch
-                            style={{
-                            }}
-                            placeholder="Select divisions"
-                            options={[
-                            {
-                                value: '1',
-                                label: 'Not Identified',
-                            },
-                            {
-                                value: '2',
-                                label: 'Closed',
-                            },
-                            ]}
-                        />
-                        <Select
-                            showSearch
-                            style={{
-                            }}
-                            placeholder="Select status"
-                            options={[
-                            {
-                                value: '1',
-                                label: 'Not Identified',
-                            },
-                            {
-                                value: '2',
-                                label: 'Closed',
-                            },
-                            ]}
-                        />
-                        <Button className="btn-bar-filter" onClick={showDrawerTreatmentDetail}>
-                            <FontAwesomeIcon className='icon-bars-filter' icon={faBars} /> More Filters
-                        </Button>
-
-                        <Drawer title="Treatment Detail" placement="right" onClose={onCloseTreatmentDetail} open={openDrawerTreatmentDetail}>
-                            <p>Some contents...</p>
-                            <p>Some contents...</p>
-                            <p>Some contents...</p>
-                        </Drawer>
-                    </div>
                 </div>
                 <div className="table-detail">
                     <Table

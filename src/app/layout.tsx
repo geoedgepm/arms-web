@@ -5,8 +5,6 @@ import { Inter } from 'next/font/google'
 import {
   DesktopOutlined,
   FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
@@ -14,6 +12,7 @@ import { Breadcrumb, Layout, Menu, theme } from 'antd'
 import Link from 'next/link'
 import './globals.css'
 import StyledComponentsRegistry from '../../lib/AntdRegistry'
+import { DashboardOutlined } from '@/components/icons';
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -37,7 +36,7 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Dashboard', '/', '1', <PieChartOutlined />),
+  getItem('Dashboard', '/', '1', <DashboardOutlined />),
   getItem('Risk Matrix', '/riskmatrix', '2', <DesktopOutlined />),
   getItem('Risk Details', '/riskdetail', '3', <DesktopOutlined />),
   getItem('User', '/riskmatrix', 'sub1', <UserOutlined />, [

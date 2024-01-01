@@ -28,6 +28,14 @@ body {
     rgb(var(--background-start-rgb)); */
 }
 
+/* CUSTOM SIDEBAR */
+.ant-menu-item-selected {
+  border-radius: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+}
+
 /* striped-table */
 
 .main-table .ar-table-tbody .ar-table-row .ar-table-cell,
