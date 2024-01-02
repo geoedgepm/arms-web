@@ -24,6 +24,18 @@
  
 /* Medium screens */
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
+   .main-home .risk-treatment-status .header {
+      display: grid !important;
+   }
+
+   .main-home .risk-treatment-status .header .title {
+      margin-bottom: 5px;
+   }
+
+   .main-home .risk-treatment-status .header .btn-right-select .btn-right-filter {
+      margin-bottom: 10px;
+   }
+
    .risk-treatment-detail .main-table-detail .header {
        display: grid !important;
    }
@@ -160,6 +172,12 @@
 
 .risk-summary {
    margin-top: 20px;
+}
+
+.risk-summary .ar-table-tbody tr:hover .ar-table-cell {
+   color: #1677FF;
+   cursor: pointer;
+   text-decoration: underline;
 }
 
 .risk-summary .header .title {

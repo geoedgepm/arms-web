@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { 
     ConfigProvider, 
     Card,
@@ -40,6 +41,7 @@ for (let i = 0; i < 3; i++) {
         likelihood_count: `${i}`,
     });
 }
+
 
 export default function Page() {
     const [state, setState] = useState<any>({
@@ -119,9 +121,9 @@ export default function Page() {
     ];
 
     const data = [];
-        for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
         data.push({
-          key: i,
+          key: `${i}`,
           risk_id: `RSK_GA_3_10 ${i}`,
           risk_event: 'Faults related to maintaining impartiality of ASEC - As a secretariat, ASEC should remain neutral (cannot take sides and interpret issues against a certain party).',
           impact_count: `${i}`,
@@ -291,7 +293,7 @@ export default function Page() {
             <div className="box">
 
                 <Row gutter={[16,16]}>
-                    <Col span={4} sm={24} md={24} xl={4}>
+                    <Col span={4} sm={24} md={12} xl={4}>
                         <Card bordered={false}>
                             <Statistic
                             title="Done"
@@ -302,7 +304,7 @@ export default function Page() {
                             />
                         </Card>
                     </Col>
-                    <Col span={4} sm={24} md={24} xl={4}>
+                    <Col span={4} sm={24} md={12} xl={4}>
                         <Card bordered={false}>
                             <Statistic
                                 title="Cancelled"
@@ -313,7 +315,7 @@ export default function Page() {
                             />
                         </Card>
                     </Col>
-                    <Col span={4} sm={24} md={24} xl={4}>
+                    <Col span={4} sm={24} md={12} xl={4}>
                         <Card bordered={false}>
                             <Statistic
                                 title="Not Started"
@@ -322,7 +324,7 @@ export default function Page() {
                             />
                         </Card>
                     </Col>
-                    <Col span={4} sm={24} md={24} xl={4}>
+                    <Col span={4} sm={24} md={12} xl={4}>
                         <Card bordered={false}>
                             <Statistic
                                 title="In Progress"
@@ -332,7 +334,7 @@ export default function Page() {
                             />
                         </Card>
                     </Col>
-                    <Col span={4} sm={24} md={24} xl={4}>
+                    <Col span={4} sm={24} md={12} xl={4}>
                         <Card bordered={false}>
                             <Statistic
                                 title="Near Due Date"
@@ -342,7 +344,7 @@ export default function Page() {
                             />
                         </Card>
                     </Col>
-                    <Col span={4} xs={24} md={24} xl={4}>
+                    <Col span={4} xs={24} md={12} xl={4}>
                         <Card bordered={false}>
                             <Statistic
                                 title="Overdue"
@@ -357,7 +359,7 @@ export default function Page() {
         </section>
         <section className="risk-summary">
             <Row gutter={[16,16]}>
-                <Col xs={24} sm={24} md={24} lg={18}>
+                <Col xs={24} sm={24} md={24} xl={18} lg={18}>
                     <div className="header">
                         <h2 className="title">Risk Summary</h2>
                     </div>
@@ -386,7 +388,7 @@ export default function Page() {
                         />
                     </div>
                 </Col>
-                <Col xs={24} sm={24} md={24} lg={6}>
+                <Col xs={24} sm={24} md={24} xl={6} lg={6}>
                     <div className="main-risk-treatment-category">
                         <div className="header">
                             <h2 className="title">Impact Risk Treatment Category</h2>
