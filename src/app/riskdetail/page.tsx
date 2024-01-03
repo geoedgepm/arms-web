@@ -368,88 +368,103 @@ export default function RiskDetail() {
                         rowKey="key"
                         className="striped-table" 
                         pagination={false}
+                        scroll={{
+                          // y: 240,
+                          x: 300,
+                        }}
                     />  
                     </div>
                 </div>
             </section>
             <section className="inherent-risk-assessment-treatment">
-            <div className="header">
-                <h3 className="title">Inherent Risk Assessment & Treatment</h3>
-            </div>
-            <div className="risk-score">
+              <div className="header">
+                  <h3 className="title">Inherent Risk Assessment & Treatment</h3>
+              </div>
+              <div className="risk-score">
                 <div className="header-risk-score">
-                <span className="title">Risk Score</span>
+                  <span className="title">Risk Score</span>
                 </div>
                 <div className="risk-score-content">
-                <Descriptions layout="vertical" column={4} items={itemsRiskScore} />
+                  <Descriptions layout="vertical" column={4} items={itemsRiskScore} />
                 </div>
 
                 <div className="header-risk-score">
-                <span className="title">Inherent Impact Details</span>
+                  <span className="title">Inherent Impact Details</span>
                 </div>
-                
+                  
                 <Table
-                dataSource={dataImpactDetail}
-                columns={columnsImpactDetail}
-                rowKey="key"
-                className="striped-table" 
-                pagination={false}
+                  dataSource={dataImpactDetail}
+                  columns={columnsImpactDetail}
+                  rowKey="key"
+                  className="striped-table" 
+                  pagination={false}
+                  scroll={{
+                    // y: 240,
+                    x: 300,
+                  }}
                 />  
 
                 <div className="header-risk-score">
-                <span className="title">Inherent Likelihood Details</span>
+                  <span className="title">Inherent Likelihood Details</span>
                 </div>
                 <div className="likelihood-details">
-                <Descriptions layout="vertical" column={6} items={itemsliklihoodDetail} />
+                  <Descriptions layout="vertical" column={6} items={itemsliklihoodDetail} />
                 </div>
 
-            </div>
-
+              </div>
             </section>
             <section className="additional-risk-treatment">
-            <div className="header">
-                <h3 className="title">Additional Risk Treatment</h3>
-            </div>
+              <div className="header">
+                  <h3 className="title">Additional Risk Treatment</h3>
+              </div>
 
-            <div className="additional-risk-treatment-content">
-                <div className="header-risk-score">
-                <span className="title">Impact Additional Controls</span>
-                </div>
-                <Table
-                dataSource={dataImpactAdditionalControls}
-                columns={columnsImpactAdditionalControls}
-                rowKey="key"
-                className="striped-table" 
-                pagination={false}
-                />  
+              <div className="additional-risk-treatment-content">
+                  <div className="header-risk-score">
+                  <span className="title">Impact Additional Controls</span>
+                  </div>
+                  <Table
+                  dataSource={dataImpactAdditionalControls}
+                  columns={columnsImpactAdditionalControls}
+                  rowKey="key"
+                  className="striped-table" 
+                  pagination={false}
+                  scroll={{
+                    // y: 240,
+                    x: 300,
+                  }}
+                  />  
 
-                <div className="header-risk-score">
-                <span className="title">Likelihood Additional Controls</span>
-                </div>
-                <Table
-                dataSource={dataImpactLikelihoodAdditional}
-                columns={columnsImpactLikelihoodAdditional}
-                rowKey="key"
-                className="striped-table" 
-                pagination={false}
-                />    
+                  <div className="header-risk-score">
+                  <span className="title">Likelihood Additional Controls</span>
+                  </div>
+                  <Table
+                  dataSource={dataImpactLikelihoodAdditional}
+                  columns={columnsImpactLikelihoodAdditional}
+                  rowKey="key"
+                  className="striped-table" 
+                  pagination={false}
+                  scroll={{
+                    // y: 240,
+                    x: 300,
+                  }}
+                  />    
 
 
-            </div>
+              </div>
             </section>
             <section className="residual-risk-assessment">
-            <div className="header">
-                <h3 className="title">Residual Risk Assessment</h3>
-            </div>
+              <div className="header">
+                  <h3 className="title">Residual Risk Assessment</h3>
+              </div>
 
-            <div className="residual-risk-assessment-content">
-                <div className="header-risk-score">
-                <span className="title">Risk Score</span>
-                </div>
-                <div className="likelihood-details">
-                <Descriptions layout="vertical" column={4} items={itemsResidualAssessment} />
-                </div>
-            </div>
+              <div className="residual-risk-assessment-content">
+                  <div className="header-risk-score">
+                    <span className="title">Risk Score</span>
+                  </div>
+                  <div className="likelihood-details">
+                    <Descriptions layout="vertical" column={4} items={itemsResidualAssessment} />
+                  </div>
+              </div>
             </section>
         </div>
     </ConfigProvider>)

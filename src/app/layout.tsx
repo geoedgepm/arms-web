@@ -93,31 +93,18 @@ export default function RootLayout({
       <body className={inter.className} style={{ margin: 0 }}>
         <StyledComponentsRegistry>
           <Layout style={{ minHeight: '100vh' }}>
-              <Sider collapsible collapsed={false} onCollapse={(value) => console.log('hello world')}>
-                <div className="demo-logo-vertical" />
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
-              </Sider>
-              <Layout>
-                <Header className='header-bar' style={{ padding: 0, background: colorBgContainer }}>
-                  <div className='profile'>
-                    <Dropdown menu={{items}} trigger={['click']}>
-                      <a onClick={(e) => e.preventDefault()}>
-                        <Space>
-                          ARMS Admin
-                          <div className='icon-profile'>
-                            <img src='https://ps.w.org/user-avatar-reloaded/assets/icon-128x128.png?rev=2540745' alt='profile'/>
-                          </div>
-                        </Space>
-                      </a>
-                    </Dropdown>
-                  </div>
-                </Header>
-                <Content style={{ margin: '0 16px' }}>
-                  {children}
-                </Content>
-                <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
-              </Layout>
+            <Sider collapsible collapsed={false} onCollapse={(value) => console.log('hello world')}>
+              <div className="demo-logo-vertical" />
+              <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+            </Sider>
+            <Layout>
+              <Header style={{ padding: 0, background: colorBgContainer }} />
+              <Content style={{ margin: '0 16px' }}>
+                {children}
+              </Content>
+              <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
             </Layout>
+          </Layout>
         </StyledComponentsRegistry>
       </body>
     </html>
