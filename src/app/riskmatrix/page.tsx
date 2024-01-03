@@ -265,7 +265,15 @@ export default function RiskMatrix() {
                 </div>
 
                 <div className='teable-content'>
-                    <Table dataSource={dataSource} columns={columns} pagination={false}/>
+                    <Table 
+                    dataSource={dataSource} 
+                    columns={columns} 
+                    pagination={false}
+                    scroll={{
+                        // y: 240,
+                        x: 300,
+                    }}
+                    />
                 </div>
             </section>
 
@@ -335,6 +343,10 @@ export default function RiskMatrix() {
                         rowKey="key"
                         className="striped-table" 
                         pagination={false}
+                        scroll={{
+                            // y: 240,
+                            x: 300,
+                        }}
                         />
                     </div>
                 </div>

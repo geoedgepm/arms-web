@@ -18,11 +18,18 @@
         margin-right: 0 !important;
         margin-bottom: 20px;
     }
+
+    .main-table .header {
+        display: grid !important;
+    }
 }
   
 /* Medium screens */
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
-
+    .main-table .header {
+        display: grid !important;
+        margin-bottom: 20px;
+    }
 }
 
 /* Large screens */
@@ -122,6 +129,7 @@
 .main-matrix .residual-risk-matrix .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .main-matrix .residual-risk-matrix {
