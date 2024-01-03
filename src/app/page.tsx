@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { 
     ConfigProvider, 
     Card,
@@ -30,6 +29,7 @@ import { getDashboardData, getSelectOptions, getRiskCount } from '@/services/das
 import DoughnutChart from '@/components/chart/doughnut-chart';
 import './style.css';
 import Helper from '@/helper';
+import Link from 'next/link';
 
 const data: any = [];
 for (let i = 0; i < 3; i++) {
@@ -103,6 +103,7 @@ export default function Page() {
           title: 'Risk ID',
           dataIndex: 'riskId',
           width: 150,
+          render: (riskId: string) => <Link href={'/riskId' + riskId}>{riskId}</Link>
         },
         {
           title: 'Risk Event',

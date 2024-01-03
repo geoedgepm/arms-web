@@ -18,7 +18,7 @@ export default function Auth() {
             const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9";
             // sessionStorage.setItem('token', token);
             setCookie('token', token);
-            router.push('/dashboard');
+            router.push('/');
             console.log("Login success!", token);
         } catch (error) {
             console.log('Login unsuccess:', error);
@@ -30,7 +30,7 @@ export default function Auth() {
         // const token = sessionStorage.getItem('token');
         const token = getCookie('token');
         if (token) {
-            router.push('/dashboard');
+            router.push('/');
         }
     }, []);
 
