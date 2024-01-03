@@ -4,12 +4,19 @@
     .risk-treatment-detail .main-table .header {
         display: grid !important;
     }
+    .inherent-risk-assessment-treatment .risk-score .header-risk-score::after {
+        width: 92% !important;
+    }
 }
 
 /* Medium screens */
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
     .risk-treatment-detail .main-table .header {
         display: grid !important;
+    }
+
+    .inherent-risk-assessment-treatment .risk-score .header-risk-score::after {
+        width: 92% !important;
     }
 }
 
