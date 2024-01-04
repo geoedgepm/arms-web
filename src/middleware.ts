@@ -18,5 +18,6 @@ export function middleware(request: NextRequest) {
 }
 export const config = {
   matcher: [
-    '/', '/dashboard', '/riskdetail', '/riskmatrix',],
+    '/', '/dashboard', '/riskdetail', '/riskmatrix',
+  ],
 };
