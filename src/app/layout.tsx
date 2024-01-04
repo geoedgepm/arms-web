@@ -99,7 +99,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className} style={{ margin: 0 }}>
+      <body className={inter.className} style={{ margin: 0, overflow: 'hidden' }}>
         <StyledComponentsRegistry>
           <Layout style={{ minHeight: '100vh' }}>
             <Sider collapsible collapsed={false} onCollapse={(value) => console.log('hello world')}>
@@ -121,7 +121,7 @@ export default function RootLayout({
                     </Dropdown>
                   </div>
                 </Header>
-              <Content style={{ margin: '0 16px' }}>
+              <Content style={{ padding: '0 16px', overflowY: 'scroll' }}>
                 {children}
               </Content>
               <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>

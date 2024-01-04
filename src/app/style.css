@@ -71,7 +71,6 @@
 
 .main-home {
    padding: 12px;
-   background: #F8F9FC;
    height: 100vh;
 }
 
@@ -170,14 +169,18 @@
    line-height: 175%; /* 38.5px */
 }
 
-.risk-summary {
-   margin-top: 20px;
+.text-risk-event {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   -webkit-line-clamp: 3; /* Set the number of lines to display */
+   max-height: 5em; /* Set the height of three lines */
 }
 
-.risk-summary .ar-table-tbody tr:hover .ar-table-cell {
-   color: #1677FF;
-   cursor: pointer;
-   text-decoration: underline;
+.risk-summary {
+   margin-top: 20px;
 }
 
 .risk-summary .header .title {
@@ -245,15 +248,8 @@
 }
 
 .risk-summary .table-content .ar-table-thead tr th {
-   color: #8A92A6;
    font-size: 14px;
-   font-style: normal;
-   font-weight: 400;
-   line-height: 175%; /* 24.5px */
    padding: 12px 17PX;
-   background: #F9FAFB;
-   border: none;
-   height: 50px;
    flex-direction: column;
    align-self: stretch;
    border-bottom: 1px solid #EAECF0;
@@ -261,13 +257,12 @@
 
 }
 
-.risk-summary .table-content .ar-table-cell {
-   border-bottom: 1px solid #EAECF0;
-   background: #FFF;
-}
-
 .risk-summary .table-content .ar-table {
    border-radius: 8px;
+}
+
+.risk-summary .table-content .ar-table-tbody tr:hover .view-link {
+   display: inline-block !important;
 }
 
 .risk-summary .table-content .ar-table-tbody tr  .ar-table-cell {
