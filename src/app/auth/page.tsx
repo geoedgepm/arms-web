@@ -4,6 +4,7 @@ import { Input, Button, Form } from 'antd';
 import './style.css';
 import { useRouter } from "next/navigation";
 import { useEffect } from 'react';
+import { setCookie, getCookie } from 'cookies-next';
 
 export default function Auth() {
     const router = useRouter();
@@ -15,17 +16,19 @@ export default function Auth() {
     const handleLogin = async (values: string) => {
         try {
             const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9";
-            sessionStorage.setItem('token', token);
+            // sessionStorage.setItem('token', token);
+            setCookie('token', token);
             router.push('/dashboard');
-            console.log("token : ",token);
+            console.log("Login success!", token);
         } catch (error) {
-            console.error('Login error:', error);
+            console.log('Login unsuccess:', error);
         }
         console.log(values);
     };
 
     useEffect(() => {
-        const token = sessionStorage.getItem('token');
+        // const token = sessionStorage.getItem('token');
+        const token = getCookie('token');
         if (token) {
             router.push('/dashboard');
         }
