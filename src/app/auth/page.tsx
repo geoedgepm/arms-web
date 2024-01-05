@@ -1,36 +1,39 @@
 'use client';
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { Input, Button, Form } from 'antd';
 import './style.css';
 import { useRouter } from "next/navigation";
-import { useEffect } from 'react';
 import { setCookie, getCookie } from 'cookies-next';
 
 export default function Auth() {
     const router = useRouter();
+    const [loading, setLoading] = useState(false);
 
     const validateMessages = {
         required: '${label} is required!',
     };
 
     const handleLogin = async (values: string) => {
+        setLoading(true);
         try {
             const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9";
             // sessionStorage.setItem('token', token);
             setCookie('token', token);
-            router.push('/dashboard');
+            router.push('/');
             console.log("Login success!", token);
+            setLoading(false);
         } catch (error) {
-            console.log('Login unsuccess:', error);
+            console.log('Login unsuccess!', error);
+            setLoading(false);
         }
         console.log(values);
     };
-
+    
     useEffect(() => {
         // const token = sessionStorage.getItem('token');
         const token = getCookie('token');
         if (token) {
-            router.push('/dashboard');
+            router.push('/');
         }
     }, []);
 
@@ -78,7 +81,9 @@ export default function Auth() {
 
                     </Form.Item>
 
-                    <Button type="primary" htmlType="submit" className="btn-login">Login</Button>
+                    <Button type="primary" htmlType="submit" className="btn-login">
+                        {loading ? "Loading..." : "Login"}
+                    </Button>
                 </Form>
             </div>
 
