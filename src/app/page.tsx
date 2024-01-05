@@ -180,7 +180,7 @@ export default function Page() {
             key: 'status',
         },
     ];
-    
+
     const dataDetail = [
         {
             key: '1',
@@ -222,11 +222,11 @@ export default function Page() {
             due_date: '12/01/2023',
             status: '-',
         },
-    
+
     ];
 
     const { option, riskCount, riskSummaries, riskTreatmentDetails } = state;
-    
+
   return (<ConfigProvider prefixCls="ar" iconPrefixCls="aricon">
     <div className="main-home">
         <section className="risk-treatment-status">
@@ -270,9 +270,9 @@ export default function Page() {
                         <p>Some contents...</p>
                         <p>Some contents...</p>
                     </Drawer>
-                    
+
                 </div>
-                
+
             </div>
             <div className="box">
 
@@ -403,4 +403,3 @@ export default function Page() {
   </ConfigProvider>
   )
 }
-
