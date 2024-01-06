@@ -98,7 +98,7 @@ a {
 }
 
 .form-controller .ant-form-item-label  {
-    text-align: start;
+    text-align: left !important;
     color: var(--Gray-700);
     font-family: Inter;
     font-size: 14px;

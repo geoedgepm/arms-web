@@ -18,7 +18,7 @@ import {
     LoadingOutlined,
     OrderedListOutlined,
     RollbackOutlined
-} from '@/components/icons'
+} from '@/components/icons';
 import { 
     faArrowDown, 
     faBars
