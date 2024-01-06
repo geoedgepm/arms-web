@@ -121,8 +121,8 @@ export default function Auth() {
 
                     </Form.Item>
 
-                    <Button type="primary" htmlType="submit" className="btn-login">
-                        {loading ? "Loading..." : "Login"}
+                    <Button disabled={loading} loading={loading} type="primary" htmlType="submit" className="btn-login">
+                        Login
                     </Button>
                 </Form>
             </div>

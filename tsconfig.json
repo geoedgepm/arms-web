@@ -20,6 +20,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "@icons*": ["./src/components/icons"],
+      "@router*": ["./src/router"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

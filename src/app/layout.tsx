@@ -7,7 +7,8 @@ import {
   FileOutlined,
   UserOutlined,
   LogoutOutlined,
-  SettingOutlined
+  SettingOutlined,
+  BarChartOutlined
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 import {
@@ -20,7 +21,7 @@ import {
 import Link from 'next/link'
 import './globals.css'
 import StyledComponentsRegistry from '../../lib/AntdRegistry'
-import { DashboardOutlined } from '@/components/icons';
+import { DashboardOutlined, LineChartOutlined } from '@/components/icons';
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -45,8 +46,8 @@ function getItem(
 
 const items: MenuItem[] = [
   getItem('Dashboard', '/', '1', <DashboardOutlined />),
-  getItem('Risk Matrix', '/riskmatrix', '2', <DesktopOutlined />),
-  getItem('Risk Details', '/riskdetail', '3', <DesktopOutlined />),
+  getItem('Risk Matrix', '/riskmatrix', '2', <BarChartOutlined />),
+  getItem('Risk Details', '/riskdetail', '3', <LineChartOutlined />),
   getItem('User', '/riskmatrix', 'sub1', <UserOutlined />, [
     getItem('Tom', '/riskmatrix', '4'),
     getItem('Bill', '/riskmatrix', '5'),

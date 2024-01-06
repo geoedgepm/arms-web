@@ -13,16 +13,24 @@ ChartJS.register(
     Legend
 );
 
-const DoughnutChart = () => {
+interface DoughnutProps {
+    categories: any[] 
+}
+
+const DoughnutChart = (props: DoughnutProps) => {
+    const categories = props.categories.filter(value => value.category !== '-');
+    const labels = categories?.map(value => value.category);
+    const datas = categories?.map(value => value.count);
+    const colors = datas.length > 0 ? ['#FACC15', '#54E69D', '#85B4F2'] : [];
 
     const data = {
-        labels: ['Mitigate/Reduce', 'Avoid', 'Transfer'],
+        labels,
         datasets: [
             {
                 label: 'Treatment Category', 
-                data: [30,50,50],
-                backgroundColor: ['#FACC15', '#54E69D', '#85B4F2'],
-                borderColor: ['#FACC15', '#54E69D', '#85B4F2'],
+                data: datas,
+                backgroundColor: colors,
+                borderColor: colors,
                 cutout: '78%',
             }
         ]
@@ -33,15 +41,15 @@ const DoughnutChart = () => {
         afterDatasetsDraw(chart: any, args: any, plugins: any) {
             const {ctx, data} = chart;
 
-            const centerX = chart.getDatasetMeta(0).data[0].x;
-            const centerY = chart.getDatasetMeta(0).data[0].y;
+            // const centerX = chart.getDatasetMeta(0).data[0].x;
+            // const centerY = chart.getDatasetMeta(0).data[0].y;
 
             ctx.save();
             ctx.font = 'bold 14px sans-serif';
             ctx.fillStyle = '#8a92a6';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText(`Total Value: ${data.datasets[0].data[0]}`, centerX, centerY);
+            // ctx.fillText(`Total Value: ${data.datasets[0].data[0]}`, centerX, centerY);
         }
     }
 
@@ -53,6 +61,7 @@ const DoughnutChart = () => {
             },
         },
     }
+
     return (
         <Doughnut 
             data={data} 

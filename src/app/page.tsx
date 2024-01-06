@@ -9,7 +9,8 @@ import {
     Select, 
     Table,
     Statistic,
-    Drawer 
+    Drawer,
+    Spin
 } from '@/components';
 import {
     CalendarOutlined,
@@ -18,18 +19,18 @@ import {
     LoadingOutlined,
     OrderedListOutlined,
     RollbackOutlined
-} from '@/components/icons'
-import { 
-    faArrowDown, 
+} from '@icons';
+import { useRouter, useSearchParams } from '@router';
+import {
     faBars
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getDashboardData, getSelectOptions, getRiskCount } from '@/services/dashboard';
-// import DoughnutChart from "./doughnutChart";
+import { getDashboardData } from '@/services/dashboard';
 import DoughnutChart from '@/components/chart/doughnut-chart';
 import './style.css';
 import Helper from '@/helper';
 import Link from 'next/link';
+import { DashboardFilter } from '@/types/dashboard';
 
 const data: any = [];
 for (let i = 0; i < 3; i++) {
@@ -48,17 +49,23 @@ export default function Page() {
         option: {},
         riskCount: {},
         riskSummaries: [],
+        riskTreatmentByCategories: [],
         riskTreatmentDetails: []
     });
+
     const [openTreatmentCategory, setOpenTreatmentCategory] = useState(false);
-    const [openDrawerTreatmentDetail, setOpenDrawerTreatmentDetail] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const router = useRouter();
+    const searchParams = useSearchParams()
 
     React.useEffect(() => {
         featchDashboardData();
     }, []);
 
-    const featchDashboardData = () => {
-        getDashboardData()
+    const featchDashboardData = (option?: DashboardFilter) => {
+        setLoading(true);
+        getDashboardData(option)
         .then((response: any) => {
             if (response && response?.data) {
                 const data = response.data;
@@ -68,9 +75,13 @@ export default function Page() {
                     option: data.options,
                     riskCount: Helper.getInstance().transformArrayToObject(data.riskCount),
                     riskSummaries: data.riskSummaries,
+                    riskTreatmentByCategories: data.riskTreatmentByCategories,
                     riskTreatmentDetails: data.riskTreatmentDetails
                 }));
             }
+        })
+        .finally(() => {
+            setLoading(false);
         });
     }
 
@@ -82,20 +93,56 @@ export default function Page() {
         setOpenTreatmentCategory(false);
     };
 
-    const showDrawerTreatmentDetail = () => {
-        setOpenDrawerTreatmentDetail(true);
+    const onChangeCategory = (category: string) => {
+        featchDashboardData({ category });
+
+        let queryParams = `category=${category}`;
+
+        const division = searchParams.get('division');
+        if (division) {
+            queryParams += `&division=${division}`;
+        }
+
+        router.push(`?${queryParams}`);
     };
 
-    const onCloseTreatmentDetail = () => {
-        setOpenDrawerTreatmentDetail(false);
+    const onChangeDivision = (division:string) => {
+        featchDashboardData({ division });
+
+        let queryParams = `division=${division}`;
+
+        const category = searchParams.get('category');
+        if (category) {
+            queryParams += `&category=${category}`
+        };
+
+        router.push(`?${queryParams}`);
     };
 
-    const handleChange = (value:string) => {
-        console.log(value); 
-    };
+    const onChangeStatus = (status: string) => {
+        featchDashboardData({ status });
 
-    const handleStatus = (value: string) => {
+        let queryParams = `status=${status}`;
 
+        const category = searchParams.get('category');
+        if (category) {
+            queryParams += `&category=${category}`
+        };
+
+        router.push(`?${queryParams}`);
+    }
+
+    const onChangeRiskTreatment = (rmType: string) => {
+        featchDashboardData({ rmType });
+
+        let queryParams = `rmType=${rmType}`;
+
+        const category = searchParams.get('category');
+        if (category) {
+            queryParams += `&category=${category}`
+        };
+
+        router.push(`?${queryParams}`);
     }
 
     const riskSummaryColumns = [
@@ -181,225 +228,195 @@ export default function Page() {
         },
     ];
 
-    const dataDetail = [
-        {
-            key: '1',
-            category: 'RSK_GA_3_10',
-            informatin: "-",
-            remarks: '-',
-            focal_point: '-',
-            cost_usd: '0.00',
-            due_date: '12/01/2023',
-            status: '-',
-        },
-        {
-            key: '2',
-            category: 'RSK_GA_3_10',
-            informatin: "-",
-            remarks: '-',
-            focal_point: '-',
-            cost_usd: '0.00',
-            due_date: '12/01/2023',
-            status: '-',
-        },
-        {
-            key: '3',
-            category: 'RSK_GA_3_10',
-            informatin: "-",
-            remarks: '-',
-            focal_point: '-',
-            cost_usd: '0.00',
-            due_date: '12/01/2023',
-            status: '-',
-        },
-        {
-        key: '4',
-            category: 'RSK_GA_3_10',
-            informatin: "-",
-            remarks: '-',
-            focal_point: '-',
-            cost_usd: '0.00',
-            due_date: '12/01/2023',
-            status: '-',
-        },
-
-    ];
-
-    const { option, riskCount, riskSummaries, riskTreatmentDetails } = state;
+    const { 
+        option, 
+        riskCount, 
+        riskSummaries, 
+        riskTreatmentByCategories, 
+        riskTreatmentDetails 
+    } = state;
 
   return (<ConfigProvider prefixCls="ar" iconPrefixCls="aricon">
-    <div className="main-home">
-        <section className="risk-treatment-status">
-            <div className="header">
-                <span className="title">Impact Risk Treatment Status</span>
-                <div className="btn-right-select">
-                    <Select
-                        className="btn-right-filter"
-                        placeholder="Select category"
-                        onChange={handleChange}
-                        options={option?.categories ? option.categories : []}
-                    />
+    <Spin spinning={loading}>
+        <div className="main-home">
+            <section className="risk-treatment-status">
+                <div className="header">
+                    <span className="title">Impact Risk Treatment Status</span>
+                    <div className="btn-right-select">
+                        <Select
+                            className="btn-right-filter"
+                            placeholder="Select category"
+                            onChange={onChangeCategory}
+                            options={option?.categories ? option.categories : []}
+                            allowClear
+                            style={{minWidth: 150}}
+                        />
 
-                    <Select
-                        className="btn-right-filter"
-                        placeholder="Select devision"
-                        onChange={handleChange}
-                        options={option?.divisions ? option.divisions : []}
-                    />
+                        <Select
+                            className="btn-right-filter"
+                            placeholder="Select devision"
+                            onChange={onChangeDivision}
+                            options={option?.divisions ? option.divisions : []}
+                            allowClear
+                            style={{minWidth: 200}}
+                        />
 
-                    <Select
-                        className="btn-right-filter"
-                        placeholder="Select status"
-                        onChange={handleStatus}
-                        options={option?.statuses ? option.statuses : []}
-                    />
+                        <Select
+                            className="btn-right-filter"
+                            placeholder="Select status"
+                            onChange={onChangeStatus}
+                            options={option?.statuses ? option.statuses : []}
+                            allowClear
+                            style={{minWidth: 150}}
+                        />
 
-                    <Select
-                        className="btn-right-filter"
-                        defaultValue="Impact Risk Treatment"
-                        onChange={handleChange}
-                        options={option?.riskTreatmentFors ? option.riskTreatmentFors : []}
-                    />
+                        <Select
+                            className="btn-right-filter"
+                            defaultValue="Impact Risk Treatment"
+                            onChange={onChangeRiskTreatment}
+                            options={option?.riskTreatmentFors ? option.riskTreatmentFors : []}
+                        />
 
-                    <Button className="btn-right-filter btn-bar-filter" onClick={showDrawerTreatmentCategory}>
-                        <FontAwesomeIcon className='icon-bars-filter' icon={faBars} /> More Filters
-                    </Button>
+                        <Button className="btn-right-filter btn-bar-filter" onClick={showDrawerTreatmentCategory}>
+                            <FontAwesomeIcon className='icon-bars-filter' icon={faBars} /> More Filters
+                        </Button>
 
-                    <Drawer title="Treatment Category" placement="right" onClose={onCloseTreatmentCategory} open={openTreatmentCategory}>
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
-                    </Drawer>
+                        <Drawer title="Treatment Category" placement="right" onClose={onCloseTreatmentCategory} open={openTreatmentCategory}>
+                            <p>Some contents...</p>
+                            <p>Some contents...</p>
+                            <p>Some contents...</p>
+                        </Drawer>
+
+                    </div>
 
                 </div>
+                <div className="box">
 
-            </div>
-            <div className="box">
-
-                <Row gutter={[16,16]}>
-                    <Col span={4} sm={24} md={12} xl={4}>
-                        <Card bordered={false}>
-                            <Statistic
-                            title="Done"
-                            value={riskCount?.Done}
-                            precision={0}
-                            valueStyle={{ color: '#3f8600' }}
-                            prefix={<CheckOutlined />}
-                            />
-                        </Card>
-                    </Col>
-                    <Col span={4} sm={24} md={12} xl={4}>
-                        <Card bordered={false}>
-                            <Statistic
-                                title="Cancelled"
-                                value={riskCount['Cancelled']}
+                    <Row gutter={[16,16]}>
+                        <Col span={4} sm={24} md={12} xl={4}>
+                            <Card bordered={false}>
+                                <Statistic
+                                title="Done"
+                                value={riskCount?.Done}
                                 precision={0}
-                                valueStyle={{ color: '#cf1322' }}
-                                prefix={<RollbackOutlined />}
+                                valueStyle={{ color: '#3f8600' }}
+                                prefix={<CheckOutlined />}
+                                />
+                            </Card>
+                        </Col>
+                        <Col span={4} sm={24} md={12} xl={4}>
+                            <Card bordered={false}>
+                                <Statistic
+                                    title="Cancelled"
+                                    value={riskCount['Cancelled']}
+                                    precision={0}
+                                    valueStyle={{ color: '#cf1322' }}
+                                    prefix={<RollbackOutlined />}
+                                />
+                            </Card>
+                        </Col>
+                        <Col span={4} sm={24} md={12} xl={4}>
+                            <Card bordered={false}>
+                                <Statistic
+                                    title="Not Started"
+                                    value={riskCount['Not Started']}
+                                    prefix={<OrderedListOutlined />}
+                                />
+                            </Card>
+                        </Col>
+                        <Col span={4} sm={24} md={12} xl={4}>
+                            <Card bordered={false}>
+                                <Statistic
+                                    title="In Progress"
+                                    value={riskCount['In Progress']}
+                                    valueStyle={{ color: '#1677ff' }}
+                                    prefix={<LoadingOutlined />}
+                                />
+                            </Card>
+                        </Col>
+                        <Col span={4} sm={24} md={12} xl={4}>
+                            <Card bordered={false}>
+                                <Statistic
+                                    title="Near Due Date"
+                                    value={riskCount['Near Due Date']}
+                                    valueStyle={{ color: '#faad14' }}
+                                    prefix={<CalendarOutlined />}
+                                />
+                            </Card>
+                        </Col>
+                        <Col span={4} xs={24} md={12} xl={4}>
+                            <Card bordered={false}>
+                                <Statistic
+                                    title="Overdue"
+                                    value={riskCount['Overdue']}
+                                    valueStyle={{ color: '#cf1322' }}
+                                    prefix={<FieldTimeOutlined />}
+                                />
+                            </Card>
+                        </Col>
+                    </Row>
+                </div>
+            </section>
+            <section className="risk-summary">
+                <Row gutter={[16,16]}>
+                    <Col xs={24} sm={24} md={24} xl={18} lg={18}>
+                        <div className="header">
+                            <h2 className="title">Risk Summary</h2>
+                        </div>
+                        <div className="table-content">
+                            <Table
+                                columns={riskSummaryColumns}
+                                dataSource={riskSummaries}
+                                pagination={false}
+                                scroll={{
+                                    y: 240,
+                                }}
+                                footer={() => (
+                                    <div className="main-footer">
+                                        <Button className="btn-pre">Previous</Button>
+                                        <div className="pagination-footer">
+                                            <ul className="pagination">
+                                                <li>Page</li>
+                                                <li><a href="/#">1</a></li>
+                                                <li>of</li>
+                                                <li><a href="/#">10</a></li>
+                                            </ul>
+                                        </div>
+                                        <Button className="btn-next">Next</Button>
+                                    </div>
+                                )}
                             />
-                        </Card>
+                        </div>
                     </Col>
-                    <Col span={4} sm={24} md={12} xl={4}>
-                        <Card bordered={false}>
-                            <Statistic
-                                title="Not Started"
-                                value={riskCount['Not Started']}
-                                prefix={<OrderedListOutlined />}
-                            />
-                        </Card>
-                    </Col>
-                    <Col span={4} sm={24} md={12} xl={4}>
-                        <Card bordered={false}>
-                            <Statistic
-                                title="In Progress"
-                                value={riskCount['In Progress']}
-                                valueStyle={{ color: '#1677ff' }}
-                                prefix={<LoadingOutlined />}
-                            />
-                        </Card>
-                    </Col>
-                    <Col span={4} sm={24} md={12} xl={4}>
-                        <Card bordered={false}>
-                            <Statistic
-                                title="Near Due Date"
-                                value={riskCount['Near Due Date']}
-                                valueStyle={{ color: '#faad14' }}
-                                prefix={<CalendarOutlined />}
-                            />
-                        </Card>
-                    </Col>
-                    <Col span={4} xs={24} md={12} xl={4}>
-                        <Card bordered={false}>
-                            <Statistic
-                                title="Overdue"
-                                value={riskCount['Overdue']}
-                                valueStyle={{ color: '#cf1322' }}
-                                prefix={<FieldTimeOutlined />}
-                            />
-                        </Card>
+                    <Col xs={24} sm={24} md={24} xl={6} lg={6}>
+                        <div className="main-risk-treatment-category">
+                            <div className="header">
+                                <h2 className="title">Impact Risk Treatment Category</h2>
+                            </div>
+                            <div className="chat-content">
+                                {riskTreatmentByCategories.length && <DoughnutChart categories={riskTreatmentByCategories}  />}
+                            </div>
+                        </div>
                     </Col>
                 </Row>
-            </div>
-        </section>
-        <section className="risk-summary">
-            <Row gutter={[16,16]}>
-                <Col xs={24} sm={24} md={24} xl={18} lg={18}>
+            </section>
+            <section className="risk-treatment-detail">
+                <div className="main-table">
                     <div className="header">
-                        <h2 className="title">Risk Summary</h2>
+                        <h2 className="title">Impact Risk Treatment Details</h2>
                     </div>
-                    <div className="table-content">
+                    <div className="table-detail">
                         <Table
-                            columns={riskSummaryColumns}
-                            dataSource={riskSummaries}
-                            pagination={false}
-                            scroll={{
-                                y: 240,
-                            }}
-                            footer={() => (
-                                <div className="main-footer">
-                                    <Button className="btn-pre">Previous</Button>
-                                    <div className="pagination-footer">
-                                        <ul className="pagination">
-                                            <li>Page</li>
-                                            <li><a href="/#">1</a></li>
-                                            <li>of</li>
-                                            <li><a href="/#">10</a></li>
-                                        </ul>
-                                    </div>
-                                    <Button className="btn-next">Next</Button>
-                                </div>
-                            )}
+                            dataSource={riskTreatmentDetails}
+                            columns={riskTreatmentDetailColumns}
+                            rowKey="key"
+                            className="striped-table"
                         />
                     </div>
-                </Col>
-                <Col xs={24} sm={24} md={24} xl={6} lg={6}>
-                    <div className="main-risk-treatment-category">
-                        <div className="header">
-                            <h2 className="title">Impact Risk Treatment Category</h2>
-                        </div>
-                        <div className="chat-content">
-                            <DoughnutChart />
-                        </div>
-                    </div>
-                </Col>
-            </Row>
-        </section>
-        <section className="risk-treatment-detail">
-            <div className="main-table">
-                <div className="header">
-                    <h2 className="title">Impact Risk Treatment Details</h2>
                 </div>
-                <div className="table-detail">
-                    <Table
-                        dataSource={riskTreatmentDetails}
-                        columns={riskTreatmentDetailColumns}
-                        rowKey="key"
-                        className="striped-table"
-                    />
-                </div>
-            </div>
-        </section>
-    </div>
+            </section>
+        </div>
+    </Spin>
   </ConfigProvider>
   )
 }
