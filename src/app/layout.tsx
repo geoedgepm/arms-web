@@ -10,12 +10,12 @@ import {
   SettingOutlined
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
-import { 
-  Layout, 
-  Menu, 
+import {
+  Layout,
+  Menu,
   theme,
-  Dropdown, 
-  Space 
+  Dropdown,
+  Space
 } from 'antd'
 import Link from 'next/link'
 import './globals.css'
@@ -72,7 +72,7 @@ function getMenuItem(
 
 const menuItems: MenuItem[] = [
   getMenuItem(
-    <Link href={'#'}> <SettingOutlined className='icon-menu'/>Change Role</Link>,
+    <Link href={'#'}> <SettingOutlined className='icon-menu' />Change Role</Link>,
     "0",
   ),
   getMenuItem(
