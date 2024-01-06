@@ -100,23 +100,34 @@ export default function Page() {
 
     const riskSummaryColumns = [
         {
-          title: 'Risk ID',
-          dataIndex: 'riskId',
-          width: 150,
-          render: (riskId: string) => <Link href={'/riskId' + riskId}>{riskId}</Link>
+            title: 'Risk ID',
+            dataIndex: 'riskId',
+            width: 200,
+            sorter: (a: any, b: any) => a.riskId.length - b.riskId.length,
+            render: (riskId: string) => <div>
+                {riskId}<Link href={`/riskId${riskId}`} className='view-link' style={{marginLeft: 15, display: 'none'}}>View</Link>
+            </div>
         },
         {
-          title: 'Risk Event',
-          dataIndex: 'riskEvent',
+            title: 'Risk Event',
+            dataIndex: 'riskEvent',
+            sorter: (a: any, b: any) => a.riskEvent.length - b.riskEvent.length,
+            render: (riskEvent: string) => {
+                return <div className='text-risk-event'>
+                    {riskEvent}
+                </div>
+            }
         },
         {
-          title: 'Impact Count',
-          dataIndex: 'impRiskTreatment',
-          width: 150,
+            title: 'Impact',
+            dataIndex: 'impRiskTreatment',
+            sorter: (a: any, b: any) => a.impRiskTreatment - b.impRiskTreatment,
+            width: 150,
         },
         {
-            title: 'Likelihood Count',
+            title: 'Likelihood',
             dataIndex: 'likRiskTreatment',
+            sorter: (a: any, b: any) => a.likRiskTreatment - b.likRiskTreatment,
             width: 150,
           },
     ];
@@ -134,68 +145,40 @@ export default function Page() {
 
     const riskTreatmentDetailColumns = [
         {
-            title:     (
-                <span> 
-                    Category <FontAwesomeIcon icon={faArrowDown} />
-                </span>
-            ),
+            title: 'Category',
             dataIndex: 'category',
             key: 'category',
         },
         {
-            title:     (
-                <span>
-                    Information <FontAwesomeIcon icon={faArrowDown} />
-                </span>
-            ),
+            title: 'Information',
             dataIndex: 'description',
             key: 'description',
         },
         {
-            title:     (
-              <span>
-                    Remarks <FontAwesomeIcon icon={faArrowDown} />
-              </span>
-            ),
+            title: 'Remarks',
             dataIndex: 'remarks',
             key: 'remarks',
         },
         {
-            title:     (
-              <span>
-                  Focal Point <FontAwesomeIcon icon={faArrowDown} />
-              </span>
-            ),
+            title: 'Focal Point',
             dataIndex: 'pic',
             key: 'pic',
         },
-          {
-            title:     (
-                <span>
-                    Cost (USD) <FontAwesomeIcon icon={faArrowDown} />
-                </span>
-            ),
+        {
+            title: 'Cost (USD)',
             dataIndex: 'cost',
             key: 'cost',
-          },
-          {
-            title:     (
-                <span>
-                    Due Date <FontAwesomeIcon icon={faArrowDown} />
-                </span>
-            ),
+        },
+        {
+            title: 'Due Date',
             dataIndex: 'dueDate',
             key: 'dueDate',
-          },
-          {
-            title:     (
-                <span>
-                    Status <FontAwesomeIcon icon={faArrowDown} />
-                </span>
-            ),
+        },
+        {
+            title: 'Status',
             dataIndex: 'status',
             key: 'status',
-          },
+        },
     ];
 
     const dataDetail = [
@@ -411,8 +394,7 @@ export default function Page() {
                         dataSource={riskTreatmentDetails}
                         columns={riskTreatmentDetailColumns}
                         rowKey="key"
-                        className="striped-table" 
-                        pagination={false}
+                        className="striped-table"
                     />
                 </div>
             </div>

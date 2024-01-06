@@ -127,9 +127,7 @@ body {
 .main-table .ar-table-thead tr .ar-table-cell,
 .risk-couse-detail .ar-table-thead .ar-table-cell,
 .inherent-risk-assessment-treatment .risk-score .ar-table-thead .ar-table-cell {
-  color: #8A92A6;
   font-size: 14px;
-  font-weight: 400;
   padding: 12px 17PX;
   border-bottom: 1px solid #EAECF0;
   border-top: 1px solid #EAECF0;

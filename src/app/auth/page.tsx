@@ -5,9 +5,12 @@ import './style.css';
 import { useRouter } from "next/navigation";
 import { setCookie, getCookie } from 'cookies-next';
 
+
 export default function Auth() {
+
     const router = useRouter();
-    const [loading, setLoading] = useState(false);
+    const [formData, setFormData] = useState<{ email: string; password: string }>({ email: "", password: "", });
+    const [loading, setLoading] = useState<boolean>(false);
 
     const validateMessages = {
         required: '${label} is required!',
@@ -15,22 +18,48 @@ export default function Auth() {
 
     const handleLogin = async (values: string) => {
         setLoading(true);
+
         try {
-            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9";
-            // sessionStorage.setItem('token', token);
-            setCookie('token', token);
-            router.push('/');
-            console.log("Login success!", token);
-            setLoading(false);
+            // Make request to API login endpoint with form data
+            const response = await fetch('http://localhost:8000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: formData.email,
+                    password: formData.password
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                
+                 // Assuming token is in response
+                const token = data.token;
+
+                // Save token in  cookie
+                setCookie('token', token, {
+                    path: '/',
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV === 'production',
+                });
+
+                // Redirect to index page
+                router.push('/');
+                console.log("Login success!");
+            } else {
+                throw new Error('Login failed');
+            }
         } catch (error) {
-            console.log('Login unsuccess!', error);
+            console.error(error);
+
+        } finally {
             setLoading(false);
         }
-        console.log(values);
     };
-    
+
     useEffect(() => {
-        // const token = sessionStorage.getItem('token');
         const token = getCookie('token');
         if (token) {
             router.push('/');
@@ -63,7 +92,13 @@ export default function Auth() {
                             },
                         ]}
                     >
-                        <Input type="email" name="email" placeholder="Enter email address" className="input" />
+                        <Input
+                            onChange={(e) => setFormData((prevFormData) => ({ ...prevFormData, email: e.target.value }))}
+                            type="email"
+                            name="email"
+                            placeholder="Enter email address"
+                            className="input"
+                        />
 
                     </Form.Item>
 
@@ -77,7 +112,12 @@ export default function Auth() {
                             },
                         ]}
                     >
-                        <Input type="password" name="password" placeholder="Enter password" className="input" />
+                        <Input
+                            onChange={(e) => setFormData((prevFormData) => ({ ...prevFormData, password: e.target.value }))}
+                            type="password"
+                            name="password"
+                            placeholder="Enter password"
+                            className="input" />
 
                     </Form.Item>
 

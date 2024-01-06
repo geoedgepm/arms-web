@@ -99,7 +99,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className} style={{ margin: 0 }}>
+      <body className={inter.className} style={{ margin: 0, overflow: 'hidden' }}>
         <StyledComponentsRegistry>
           <Layout style={{ minHeight: '100vh' }}>
             <Sider collapsible collapsed={false} onCollapse={(value) => console.log('hello world')}>
@@ -108,20 +108,20 @@ export default function RootLayout({
             </Sider>
             <Layout>
               <Header className='header-bar' style={{ padding: 0, background: colorBgContainer }}>
-                <div className='profile'>
-                  <Dropdown menu={{ items: menuItems }} trigger={['click']}>
-                    <a onClick={(e) => e.preventDefault()}>
-                      <Space>
-                        ARMS Admin
-                        <div className='icon-profile'>
-                          <img src='https://ps.w.org/user-avatar-reloaded/assets/icon-128x128.png?rev=2540745' alt='profile' />
-                        </div>
-                      </Space>
-                    </a>
-                  </Dropdown>
-                </div>
-              </Header>
-              <Content style={{ margin: '0 16px' }}>
+                  <div className='profile'>
+                    <Dropdown menu={{items: menuItems}} trigger={['click']}>
+                      <a onClick={(e) => e.preventDefault()}>
+                        <Space>
+                          ARMS Admin
+                          <div className='icon-profile'>
+                            <img src='https://ps.w.org/user-avatar-reloaded/assets/icon-128x128.png?rev=2540745' alt='profile'/>
+                          </div>
+                        </Space>
+                      </a>
+                    </Dropdown>
+                  </div>
+                </Header>
+              <Content style={{ padding: '0 16px', overflowY: 'scroll' }}>
                 {children}
               </Content>
               <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
