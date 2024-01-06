@@ -64,7 +64,8 @@ body {
   padding: 0 !important;
 }
 
-.main-table thead tr .ar-table-cell {
+.main-table thead tr .ar-table-cell,
+.risk-detail-content thead tr .ar-table-cell {
   border-top: 1px solid #EAECF0;
   border-bottom: 1px solid #EAECF0;
   background: #F9FAFB;
@@ -77,16 +78,29 @@ body {
   line-height: 175%;
 }
 
-.main-table .striped-table tbody tr:nth-child(odd) {
+.main-table .striped-table tbody tr:nth-child(odd),
+.risk-detail-content .striped-table tbody tr:nth-child(odd) {
   border: 1px solid #EAECF0;
   background: #f0f1f3;
 }
 
 .main-table .ar-table-content .ar-spin-nested-loading,
 .main-detail-content .risk-couse-detail .ar-spin-nested-loading,
-.inherent-risk-assessment-treatment .risk-score .ar-spin-nested-loading {
+.inherent-risk-assessment-treatment .risk-score .ar-spin-nested-loading,
+.risk-detail-content .ar-spin-nested-loading {
   box-shadow: 0px 10px 13px 0px rgba(17, 38, 146, 0.05);
   border-radius: 8px;
+}
+
+
+.main-table .ar-table-thead tr .ar-table-cell,
+.risk-couse-detail .ar-table-thead .ar-table-cell,
+.inherent-risk-assessment-treatment .risk-score .ar-table-thead .ar-table-cell,
+.risk-detail-content .ar-table-thead .ar-table-cell {
+  font-size: 14px;
+  padding: 12px 17PX;
+  border-bottom: 1px solid #EAECF0;
+  border-top: 1px solid #EAECF0;
 }
 
 /* header striped-table */
@@ -124,14 +138,6 @@ body {
   display: flex;
 }
 
-.main-table .ar-table-thead tr .ar-table-cell,
-.risk-couse-detail .ar-table-thead .ar-table-cell,
-.inherent-risk-assessment-treatment .risk-score .ar-table-thead .ar-table-cell {
-  font-size: 14px;
-  padding: 12px 17PX;
-  border-bottom: 1px solid #EAECF0;
-  border-top: 1px solid #EAECF0;
-}
 
 .main-table .header .title {
   color: #232D42;

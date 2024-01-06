@@ -19,7 +19,8 @@ export function getDashboardData(option?: DashboardFilter) {
       headers: {},
       url: `dashboard?${queryParams.map((param: string, index: number) => index === 0 ? param : `&${param}`).join('')}`
     });
-
+   console.log('result', result);
+   
    return responseTransformer(result);
 }
 
