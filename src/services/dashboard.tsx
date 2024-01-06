@@ -6,7 +6,8 @@ export function getDashboardData() {
       headers: {},
       url: 'dashboard?fiscalYear=&quarter=&department=&directorate=&division=&rmType='
     });
-
+   console.log('result', result);
+   
    return responseTransformer(result);
 }
 
