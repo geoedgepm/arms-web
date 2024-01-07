@@ -7,6 +7,7 @@ export interface DashboardState {
 }
 
 export interface DashboardFilter {
+   search?: string;
    fiscalYear?: string;
    quarter?: string;
    category?: string;
@@ -15,4 +16,5 @@ export interface DashboardFilter {
    division?: string;
    status?: string;
    rmType?: string;
+   page?: number;
 }

@@ -188,7 +188,7 @@
    font-size: 18px;
    font-style: normal;
    font-weight: 600;
-   line-height: 175%; /* 31.5px */
+   margin-bottom: 10px;
 }
 
 .risk-summary .table-content .ar-table-pagination {
@@ -208,7 +208,7 @@
    margin: 0;
    padding: 14px 12px;
    display: flex;
-   justify-content: space-between;
+   justify-content: flex-end;
 }
 
 

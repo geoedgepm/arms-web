@@ -53,19 +53,17 @@ const DoughnutChart = (props: DoughnutProps) => {
         }
     }
 
-    const options = {
-        aspectRatio: 1.8,
-        plugins: {
-            legend: {
-              position: 'top',
-            },
-        },
-    }
-
     return (
         <Doughnut 
             data={data} 
-            // options={options}
+            // options={{
+            //     aspectRatio: 1.8,
+            //     plugins: {
+            //         legend: {
+            //             position: 'top'
+            //         }
+            //     }
+            // }}
             plugins={[dougnutLabel]}
         />
     )

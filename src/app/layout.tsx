@@ -3,7 +3,6 @@ import React from 'react';
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import {
-  DesktopOutlined,
   FileOutlined,
   UserOutlined,
   LogoutOutlined,
@@ -100,14 +99,14 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className} style={{ margin: 0, overflow: 'hidden' }}>
+      <body className={inter.className} style={{ margin: 0, /*overflow: 'hidden'*/ }}>
         <StyledComponentsRegistry>
           <Layout style={{ minHeight: '100vh' }}>
-            <Sider collapsible collapsed={false} onCollapse={(value) => console.log('hello world')}>
+            <Sider collapsible collapsed={false} style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0, top: 0, bottom: 0 }} onCollapse={(value) => console.log('hello world')}>
               <div className="demo-logo-vertical" />
               <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
             </Sider>
-            <Layout>
+            <Layout style={{ marginLeft: 200 }}>
               <Header className='header-bar' style={{ padding: 0, background: colorBgContainer }}>
                   <div className='profile'>
                     <Dropdown menu={{items: menuItems}} trigger={['click']}>
@@ -122,10 +121,10 @@ export default function RootLayout({
                     </Dropdown>
                   </div>
                 </Header>
-              <Content style={{ padding: '0 16px', overflowY: 'scroll' }}>
+              <Content style={{ padding: '0 16px', /*overflowY: 'scroll'*/ }}>
                 {children}
               </Content>
-              <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
+              {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer> */}
             </Layout>
           </Layout>
         </StyledComponentsRegistry>
