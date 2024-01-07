@@ -26,6 +26,7 @@ const bindDashboardQuery = (option?: DashboardFilter) => {
    if (option?.division) queryParams.push(`division=${option.division}`);
    if (option?.status) queryParams.push(`status=${option.status}`);
    if (option?.page) queryParams.push(`page=${option.page}`);
+   if (option?.pageSize) queryParams.push(`page_size=${option.pageSize}`);
 
    queryParams.push(`rmType=${option?.rmType ? option.rmType : ''}`);
 

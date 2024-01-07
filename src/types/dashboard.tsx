@@ -17,4 +17,5 @@ export interface DashboardFilter {
    status?: string;
    rmType?: string;
    page?: number;
+   pageSize?: number;
 }

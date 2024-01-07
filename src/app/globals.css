@@ -214,3 +214,7 @@ body {
 .ant-dropdown-menu-item .icon-menu {
   margin-right: 10px;
 }
+
+.ar-btn-primary {
+  background-color: #1cc88a !important
+}

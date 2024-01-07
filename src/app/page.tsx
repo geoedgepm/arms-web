@@ -7,6 +7,8 @@ import {
     Col,
     ConfigProvider,
     Drawer,
+    DatePicker,
+    Form,
     Input,
     Pagination,
     Row,
@@ -19,17 +21,15 @@ import type { PaginationProps } from '@/components';
 import {
     CalendarOutlined,
     CheckOutlined,
+    CloseOutlined,
     FieldTimeOutlined,
+    FilterOutlined,
     LoadingOutlined,
     OrderedListOutlined,
     RollbackOutlined,
     SearchOutlined
 } from '@icons';
 import { useRouter, useSearchParams } from '@router';
-import {
-    faBars
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getDashboardData, getRiskSummary, getRiskDetail } from '@/services/dashboard';
 import DoughnutChart from '@/components/chart/doughnut-chart';
 import './style.css';
@@ -60,13 +60,14 @@ export default function Page() {
 
     let timer: any = null;
 
-    const [openTreatmentCategory, setOpenTreatmentCategory] = useState(false);
+    const [visibleDrawer, setVisibleDrawer] = useState(false);
     const [loading, setLoading] = useState(false);
     const [rsLoading, setRSLoading] = useState(false);
     const [rsdLoading, setRSDLoading] = useState(false);
 
     const router = useRouter()
     const searchParams = useSearchParams()
+    const [formDrawer] = Form.useForm()
 
     React.useEffect(() => {
         featchDashboardData();
@@ -76,6 +77,9 @@ export default function Page() {
         if (!rmType) {
             router.push('?rmType=ImpactRT');
         }
+
+        const params = new URLSearchParams(searchParams)
+        console.log('Query Params:', params.toString());
     }, [])
 
     const featchDashboardData = (option?: DashboardFilter) => {
@@ -136,12 +140,48 @@ export default function Page() {
         });
     }
 
-    const showDrawerTreatmentCategory = () => {
-        setOpenTreatmentCategory(true);
-    };
+    const onShowDrawer = () => {
+        setVisibleDrawer(true);
+    }
 
-    const onCloseTreatmentCategory = () => {
-        setOpenTreatmentCategory(false);
+    const onHideDrawer = () => {
+        setVisibleDrawer(false);
+    }
+
+    const onResetFilter = () => {
+        const currentFilters = Helper.getInstance().getCurrentFilters(searchParams);
+        Object.keys(currentFilters).forEach((key: string) => {
+
+        });
+        
+        router.replace(location.pathname);
+
+        featchDashboardData();
+    }
+
+    const onFinish = (values: any) => {
+        const fiscalYear = values.fiscalYear.format('YYYY')
+        const quarter = values.quarter
+        const directorate = values.directorate
+        const department = values.department
+
+        let queryParams = `fiscal_year=${fiscalYear || ''}`
+        queryParams += `quarter=${quarter}`
+        queryParams += `directorate=${directorate}`
+        queryParams += `department=${department}`
+
+        const rmType = searchParams.get('rmType')
+        if (rmType) queryParams += `&rmType=${rmType}`
+
+        router.push(`?${queryParams}`)
+        onHideDrawer()
+
+        featchDashboardData({
+            fiscalYear,
+            quarter,
+            directorate,
+            department
+        })
     };
 
     const onChangeCategory = (category: string) => {
@@ -210,8 +250,9 @@ export default function Page() {
 
     // Risk Summary
     const onSearchRiskSummary = (event: any) => {
-        const search = event.target.value;
-        router.push(`?rs_search=${search}`)
+        const rmType: any = searchParams.get('rmType')
+        const search = event.target.value
+        router.push(`?rs_search=${search}&rmType=${rmType}`)
 
         clearTimeout(timer)
         timer = setTimeout(() => {
@@ -220,16 +261,17 @@ export default function Page() {
     }
 
     const onChangePageRiskSummary = (page: number, pageSize: number) => {
-        const rmType: any = searchParams.get('rmType');
+        const rmType: any = searchParams.get('rmType')
 
-        fetchRiskSummary({ page, rmType });
-        router.push(`?rs_page=${page}&rmType=${rmType}`);
+        fetchRiskSummary({ page, pageSize, rmType });
+        router.push(`?rs_page=${page}&rmType=${rmType}`)
     }
 
     // Risk Detail
     const onSearchRiskDetail = (event: any) => {
-        const search = event.target.value;
-        router.push(`?rsd_search=${search}`)
+        const rmType: any = searchParams.get('rmType')
+        const search = event.target.value
+        router.push(`?rsd_search=${search}&rmType=${rmType}`)
 
         clearTimeout(timer)
         timer = setTimeout(() => {
@@ -237,11 +279,11 @@ export default function Page() {
         }, 1200)
     }
 
-    const onChangePageRiskDetail = (page: number) => {
-        const rmType: any = searchParams.get('rmType');
+    const onChangePageRiskDetail = (page: number, pageSize: number) => {
+        const rmType: any = searchParams.get('rmType')
 
-        fetchRiskDetail({ page, rmType });
-        router.push(`?rsd_page=${page}&rmType=${rmType}`, {scroll: false});
+        fetchRiskDetail({ page, pageSize, rmType })
+        router.push(`?rsd_page=${page}&rmType=${rmType}`, {scroll: false})
     }
 
     const riskSummaryColumns = [
@@ -344,6 +386,8 @@ export default function Page() {
         riskTreatmentDetails 
     } = state;
 
+    const currentFilters = Helper.getInstance().getCurrentFilters(searchParams);
+    
   return (<ConfigProvider prefixCls="ar" iconPrefixCls="aricon">
     <Spin spinning={loading}>
         <div className="main-home">
@@ -354,6 +398,7 @@ export default function Page() {
                         <Select
                             className="btn-right-filter"
                             placeholder="Select category"
+                            defaultValue={searchParams.get('category') ?? null}
                             onChange={onChangeCategory}
                             options={option?.categories ? option.categories : []}
                             allowClear
@@ -362,7 +407,8 @@ export default function Page() {
 
                         <Select
                             className="btn-right-filter"
-                            placeholder="Select devision"
+                            placeholder="Select division"
+                            defaultValue={searchParams.get('division') ?? null}
                             onChange={onChangeDivision}
                             options={option?.divisions ? option.divisions : []}
                             allowClear
@@ -372,6 +418,7 @@ export default function Page() {
                         <Select
                             className="btn-right-filter"
                             placeholder="Select status"
+                            defaultValue={searchParams.get('status') ?? null}
                             onChange={onChangeStatus}
                             options={option?.statuses ? option.statuses : []}
                             allowClear
@@ -380,23 +427,84 @@ export default function Page() {
 
                         <Select
                             className="btn-right-filter"
-                            defaultValue="Impact Risk Treatment"
+                            defaultValue={searchParams.get('rmType') ?? 'ImpactRT'}
                             onChange={onChangeRiskTreatment}
                             options={option?.riskTreatmentFors ? option.riskTreatmentFors : []}
                         />
 
-                        <Button className="btn-right-filter btn-bar-filter" onClick={showDrawerTreatmentCategory}>
-                            <FontAwesomeIcon className='icon-bars-filter' icon={faBars} /> More Filters
+                        <Button icon={<FilterOutlined />} onClick={onShowDrawer}>
+                            More Filter
                         </Button>
 
-                        <Drawer title="Treatment Category" placement="right" onClose={onCloseTreatmentCategory} open={openTreatmentCategory}>
-                            <p>Some contents...</p>
-                            <p>Some contents...</p>
-                            <p>Some contents...</p>
+                        <Button icon={<CloseOutlined />} style={{ marginLeft: 10 }} onClick={onResetFilter}>
+                            Reset Filter {Object.keys(currentFilters).length > 0 ? `(${Object.keys(currentFilters).length})` : ''}
+                        </Button>
+
+                        <Drawer title="More Filters" placement="right" onClose={onHideDrawer} open={visibleDrawer}>
+                            <Form
+                                form={formDrawer}
+                                layout="vertical"
+                                onFinish={onFinish}
+                                autoComplete="off"
+                            >
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                                    <Form.Item
+                                        name="fiscalYear"
+                                        label="Period"
+                                        style={{flex: 1}}
+                                    >
+                                        <DatePicker
+                                            picker="year"
+                                            style={{width: '100%'}}
+                                        />
+                                    </Form.Item>
+                                    <Form.Item
+                                        name="quarter"
+                                        style={{flex: 1, marginLeft: 15}}
+                                    >
+                                        <Select
+                                            placeholder="Select quarter"
+                                            options={option?.cycles ?? []}
+                                            allowClear
+                                            style={{width: '100%'}}
+                                        />
+                                    </Form.Item>
+                                </div>
+                                <Form.Item
+                                    name="directorate"
+                                    label="Directorate"
+                                >
+                                    <Select
+                                        placeholder="Select directorate"
+                                        options={option?.directorates ?? []}
+                                        allowClear
+                                        showSearch
+                                    />
+                                </Form.Item>
+                                <Form.Item
+                                    name="department"
+                                    label="Department"
+                                >
+                                    <Select
+                                        placeholder="Select department"
+                                        options={option?.departments ?? []}
+                                        allowClear
+                                        showSearch
+                                    />
+                                </Form.Item>
+                                <Form.Item>
+                                    <Button 
+                                        loading={loading} 
+                                        disabled={loading} 
+                                        type="primary" 
+                                        htmlType="submit"
+                                    >
+                                        Submit
+                                    </Button>
+                                </Form.Item>
+                            </Form>
                         </Drawer>
-
                     </div>
-
                 </div>
                 <div className="box">
 

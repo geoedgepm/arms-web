@@ -38,4 +38,31 @@ export default class Helper {
 
       return object;
    }
+
+   /**
+    * 
+    * @param queryString 
+    * @returns 
+    */
+   public parseQueryParams(queryString: string): Record<string, string> {
+      const params = new URLSearchParams(queryString);
+      const queryParams: Record<string, string> = {};
+    
+      params.forEach((value, key) => {
+        if (value) queryParams[key] = value;
+      });
+    
+      return queryParams;
+    
+   }
+
+   /**
+    * 
+    * @param searchParams 
+    * @returns 
+    */
+   public getCurrentFilters(searchParams: any) {
+      const params = new URLSearchParams(searchParams)
+      return this.parseQueryParams(params.toString());
+   }
 }

@@ -1,6 +1,8 @@
 'use client'
 import React from 'react';
 import type { Metadata } from 'next'
+import Head from 'next/head'
+import Link from 'next/link'
 import { Inter } from 'next/font/google'
 import {
   FileOutlined,
@@ -16,7 +18,6 @@ import {
   Dropdown,
   Space
 } from 'antd'
-import Link from 'next/link'
 import './globals.css'
 import StyledComponentsRegistry from '../../lib/AntdRegistry'
 import { BarChartOutlined, DashboardOutlined, LineChartOutlined } from '@/components/icons';
@@ -97,6 +98,7 @@ export default function RootLayout({
   return (
 
     <html lang="en">
+      <Head>ASEC Risk Management</Head>
       <body className={inter.className} style={{ margin: 0, /*overflow: 'hidden'*/ }}>
         <StyledComponentsRegistry>
           <Layout style={{ minHeight: '100vh' }}>
