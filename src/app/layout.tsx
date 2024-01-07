@@ -3,11 +3,11 @@ import React from 'react';
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import {
+  DesktopOutlined,
   FileOutlined,
   UserOutlined,
   LogoutOutlined,
-  SettingOutlined,
-  BarChartOutlined
+  SettingOutlined
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 import {
@@ -20,7 +20,7 @@ import {
 import Link from 'next/link'
 import './globals.css'
 import StyledComponentsRegistry from '../../lib/AntdRegistry'
-import { DashboardOutlined, LineChartOutlined } from '@/components/icons';
+import { DashboardOutlined } from '@/components/icons';
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -45,8 +45,8 @@ function getItem(
 
 const items: MenuItem[] = [
   getItem('Dashboard', '/', '1', <DashboardOutlined />),
-  getItem('Risk Matrix', '/riskmatrix', '2', <BarChartOutlined />),
-  getItem('Risk Details', '/riskdetail', '3', <LineChartOutlined />),
+  getItem('Risk Matrix', '/riskmatrix', '2', <DesktopOutlined />),
+  getItem('Risk Details', '/riskdetail', '3', <DesktopOutlined />),
   getItem('User', '/riskmatrix', 'sub1', <UserOutlined />, [
     getItem('Tom', '/riskmatrix', '4'),
     getItem('Bill', '/riskmatrix', '5'),
@@ -93,42 +93,50 @@ export default function RootLayout({
 }) {
 
   const [collapsed, setCollapsed] = React.useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  const { token: { colorBgContainer, borderRadiusLG }, } = theme.useToken();
 
   return (
+
     <html lang="en">
-      <body className={inter.className} style={{ margin: 0, /*overflow: 'hidden'*/ }}>
+      <body className={inter.className} style={{ margin: 0, overflow: 'hidden' }}>
         <StyledComponentsRegistry>
           <Layout style={{ minHeight: '100vh' }}>
-            <Sider collapsible collapsed={false} style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0, top: 0, bottom: 0 }} onCollapse={(value) => console.log('hello world')}>
-              <div className="demo-logo-vertical" />
-              <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
-            </Sider>
-            <Layout style={{ marginLeft: 200 }}>
-              <Header className='header-bar' style={{ padding: 0, background: colorBgContainer }}>
+            {location.pathname === "/auth" ? (
+              <></>
+            ) : (
+              <Sider collapsible collapsed={false} onCollapse={(value) => console.log('hello world')}>
+                <div className="demo-logo-vertical" />
+                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+              </Sider>
+            )}
+            <Layout>
+              {location.pathname === "/auth" ? (
+                <></>
+              ) : (
+                <Header className='header-bar' style={{ padding: 0, background: colorBgContainer }}>
                   <div className='profile'>
-                    <Dropdown menu={{items: menuItems}} trigger={['click']}>
+                    <Dropdown menu={{ items: menuItems }} trigger={['click']}>
                       <a onClick={(e) => e.preventDefault()}>
                         <Space>
                           ARMS Admin
                           <div className='icon-profile'>
-                            <img src='https://ps.w.org/user-avatar-reloaded/assets/icon-128x128.png?rev=2540745' alt='profile'/>
+                            <img src='https://ps.w.org/user-avatar-reloaded/assets/icon-128x128.png?rev=2540745' alt='profile' />
                           </div>
                         </Space>
                       </a>
                     </Dropdown>
                   </div>
                 </Header>
-              <Content style={{ padding: '0 16px', /*overflowY: 'scroll'*/ }}>
+              )}
+              <Content style={{ padding: '0 16px', overflowY: 'scroll' }}>
                 {children}
               </Content>
-              {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer> */}
+              <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
             </Layout>
           </Layout>
         </StyledComponentsRegistry>
       </body>
     </html>
+
   )
 }
