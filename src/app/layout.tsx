@@ -93,34 +93,41 @@ export default function RootLayout({
 }) {
 
   const [collapsed, setCollapsed] = React.useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  const { token: { colorBgContainer, borderRadiusLG }, } = theme.useToken();
 
   return (
+
     <html lang="en">
       <body className={inter.className} style={{ margin: 0, overflow: 'hidden' }}>
         <StyledComponentsRegistry>
           <Layout style={{ minHeight: '100vh' }}>
-            <Sider collapsible collapsed={false} onCollapse={(value) => console.log('hello world')}>
-              <div className="demo-logo-vertical" />
-              <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
-            </Sider>
+            {location.pathname === "/auth" ? (
+              <></>
+            ) : (
+              <Sider collapsible collapsed={false} onCollapse={(value) => console.log('hello world')}>
+                <div className="demo-logo-vertical" />
+                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+              </Sider>
+            )}
             <Layout>
-              <Header className='header-bar' style={{ padding: 0, background: colorBgContainer }}>
+              {location.pathname === "/auth" ? (
+                <></>
+              ) : (
+                <Header className='header-bar' style={{ padding: 0, background: colorBgContainer }}>
                   <div className='profile'>
-                    <Dropdown menu={{items: menuItems}} trigger={['click']}>
+                    <Dropdown menu={{ items: menuItems }} trigger={['click']}>
                       <a onClick={(e) => e.preventDefault()}>
                         <Space>
                           ARMS Admin
                           <div className='icon-profile'>
-                            <img src='https://ps.w.org/user-avatar-reloaded/assets/icon-128x128.png?rev=2540745' alt='profile'/>
+                            <img src='https://ps.w.org/user-avatar-reloaded/assets/icon-128x128.png?rev=2540745' alt='profile' />
                           </div>
                         </Space>
                       </a>
                     </Dropdown>
                   </div>
                 </Header>
+              )}
               <Content style={{ padding: '0 16px', overflowY: 'scroll' }}>
                 {children}
               </Content>
@@ -130,5 +137,6 @@ export default function RootLayout({
         </StyledComponentsRegistry>
       </body>
     </html>
+
   )
 }

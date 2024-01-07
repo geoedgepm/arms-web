@@ -34,8 +34,6 @@ export default function Page() {
           Logout
         </Button>
       </div>
-
-
     </>
   );
 };
