@@ -1,12 +1,14 @@
-import { api, responseTransformer } from './api'
+import { DashboardFilter } from '@/types/dashboard';
+import { api, responseTransformer, bindDashboardQuery } from './api';
 
-export function getDashboardData() {
+export function getDashboardData(option?: DashboardFilter) {
    const result =  api({
       method: "GET",
       headers: {},
-      url: 'dashboard?fiscalYear=&quarter=&department=&directorate=&division=&rmType='
+      url: `dashboard?${bindDashboardQuery(option)}`
     });
-
+   console.log('result', result);
+   
    return responseTransformer(result);
 }
 
@@ -25,6 +27,26 @@ export function getRiskCount() {
       method: "GET",
       headers: {},
       url: 'dashboard/risk_count'
+    });
+
+   return responseTransformer(result);
+}
+
+export function getRiskSummary(option?: DashboardFilter) {
+   const result =  api({
+      method: "GET",
+      headers: {},
+      url: `dashboard/risk_summaries?${bindDashboardQuery(option)}`
+    });
+
+   return responseTransformer(result);
+}
+
+export function getRiskDetail(option?: DashboardFilter) {
+   const result =  api({
+      method: "GET",
+      headers: {},
+      url: `dashboard/risk_treatment_details?${bindDashboardQuery(option)}`
     });
 
    return responseTransformer(result);
